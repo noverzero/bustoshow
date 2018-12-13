@@ -1,13 +1,25 @@
+const {util, seed} = require('data-seed')
+function seedVenue(){ return seed.word(6, 12) }
+function seedHeadliner(){ return seed.word(4, 20) }
+function seedDate(){ return seed.date.format("MM-DD-YYYY") }
+function seedStartTime(){ return seed.time([hourType=24]) }
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_nameTable').del()
+  return knex('events').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('events').insert([
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},
+        {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()}
       ])
     })
     .then(() => {

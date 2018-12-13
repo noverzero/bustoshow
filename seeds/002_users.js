@@ -1,7 +1,7 @@
 const {util, seed} = require('data-seed')
-const firstNameSeed = seed.name.en.firstName()
-const lastNameSeed = seed.name.en.lastName()
-const seedEmail = seed.email()
+function firstNameSeed(){ return seed.name.en.firstName() }
+function lastNameSeed(){ return seed.name.en.lastName() }
+function seedEmail(){ return seed.email() }
 
 exports.seed = (knex) => {
   // Deletes ALL existing entries
@@ -9,16 +9,16 @@ exports.seed = (knex) => {
     .then(() => {
       // Inserts seed entries
       return knex('users').insert([
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail},
-        {firstName: firstNameSeed, lastName: lastNameSeed, email: seedEmail}
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()},
+        {firstName: firstNameSeed(), lastName: lastNameSeed(), email: seedEmail()}
       ])
     })
     .then(() => {

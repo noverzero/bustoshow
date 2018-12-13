@@ -1,4 +1,3 @@
-
 exports.up = (knex) => {
   return knex.schema.createTable('reservations', (table) => { 
     table.increments('id')

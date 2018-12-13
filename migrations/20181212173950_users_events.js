@@ -1,4 +1,3 @@
-
 exports.up = (knex) => {
   return knex.schema.createTable("usersEvents",(table)=>{
     table.increments()
