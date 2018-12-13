@@ -1,7 +1,7 @@
 
 exports.up = (knex) => {
   return knex.schema.createTable('trips', (table) => {
-    table.integer('id')
+    table.increments('id')
     table.integer('busId').references('buses.id')
     table.integer('eventId').references('events.id')
     table.integer('pickupLocationId').references('pickupLocations.id')
