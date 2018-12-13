@@ -1,13 +1,25 @@
+const {util, seed} = require('data-seed')
+function seedName(){ return seed.name.en.firstName() }
 
-exports.seed = function(knex, Promise) {
+exports.seed = (knex) => {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('buses').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('buses').insert([
+        {capacity: 44, name: seedName()},
+        {capacity: 44, name: seedName()},
+        {capacity: 44, name: seedName()},
+        {capacity: 50, name: seedName()},
+        {capacity: 50, name: seedName()},
+        {capacity: 50, name: seedName()},
+        {capacity: 50, name: seedName()},
+        {capacity: 54, name: seedName()},
+        {capacity: 54, name: seedName()},
+        {capacity: 54, name: seedName()},
+      ])
+    })
+    .then(() => {
+      return knex.raw("SELECT setval('buses_id_seq', (SELECT MAX(id) FROM buses))")
+    })
+}
