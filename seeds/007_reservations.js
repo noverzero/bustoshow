@@ -1,13 +1,25 @@
+const {util, seed} = require('data-seed')
+function userTripId(){ return util.random.int(1,10)}
 
-exports.seed = function(knex, Promise) {
+exports.seed = (knex) => {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex('reservations').del()
+    .then(() => {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('reservations').insert([
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: false },
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: false },
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: false },
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: false },
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: true },
+        { userId: userTripId(), tripId: userTripId(), isPaid: true, isFavorite: true },
+        { userId: userTripId(), tripId: userTripId(), isPaid: false, isFavorite: true },
+        { userId: userTripId(), tripId: userTripId(), isPaid: false, isFavorite: true },
+        { userId: userTripId(), tripId: userTripId(), isPaid: false, isFavorite: false },
+        { userId: userTripId(), tripId: userTripId(), isPaid: false, isFavorite: false }
+      ])
+    })
+    .then(() => {
+      return knex.raw("SELECT setval('reservations_id_seq', (SELECT MAX(id) FROM reservations))")
+    })
+}
