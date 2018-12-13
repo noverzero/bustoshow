@@ -2,7 +2,7 @@
 exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('pickup_locations').del()
-    .then(function () {
+    .then(() => {
       // Inserts seed entries
       return knex('pickup_locations').insert([
         { streetAddress: '', locationName: ''},

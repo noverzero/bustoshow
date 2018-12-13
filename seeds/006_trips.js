@@ -1,5 +1,5 @@
 const {util, seed} = require('data-seed')
-function busEventDriverId(){ return random.int(1,10)}
+function busEventDriverId(){ return util.random.int(1,10)}
 function locId(){ return util.random.int(1,7) }
 function depart(){  return seed.time([hourType=24]) }
 
