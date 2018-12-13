@@ -1,8 +1,15 @@
 
-exports.up = function(knex, Promise) {
-  
-};
+exports.up = (knex) => {
+  return knex.schema.createTable('users', (table) => {
+    table.increments('id')
+    table.string('firstName').notNullable()
+    table.string('lastName').notNullable()
+    table.string('email').notNullable()
+    table.boolean('waiverSign').notNullable().defaultTo('false')
+    table.string('userType').notNullable().defaultTo('standard')
+  })
+}
 
-exports.down = function(knex, Promise) {
-  
-};
+exports.down = (knex) => {
+  return knex.schema.dropTable("events")
+}
