@@ -2,7 +2,7 @@
 This is where the backend of the bts-app lives.
 
 
-### Server Routes Plan 
+### Server Routes Plan
 
 Users
 - POST /api/signup Create a new user
