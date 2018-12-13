@@ -4,6 +4,7 @@ exports.up = (knex) => {
     table.increments()
     table.string("streetAddress").notNullable()
     table.string("locationName").notNullable()
+  })
 }
 
 exports.down = (knex) => {
