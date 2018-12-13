@@ -3,6 +3,7 @@ exports.up = (knex) => {
     table.increments()
     table.integer("capacity").notNullable()
     table.string("name").notNullable().defaultsTo("")
+    table.string('busCode').notNullable().defaultsTo('')
   })
 }
 
