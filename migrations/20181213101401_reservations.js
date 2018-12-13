@@ -6,6 +6,7 @@ exports.up = (knex) => {
     table.integer('tripId').references('trips.id').onDelete('CASCADE')
     table.boolean('isPaid').notNullable().defaultsTo('false')
     table.boolean('isFavorite').notNullable().defaultsTo('false')
+  })
 }
 
 exports.down = (knex) => {
