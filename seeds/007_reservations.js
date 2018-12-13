@@ -1,7 +1,6 @@
 const {util, seed} = require('data-seed')
 function userTripId(){ return util.random.int(1,10)}
 
-
 exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('reservations').del()

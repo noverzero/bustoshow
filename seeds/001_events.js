@@ -4,10 +4,10 @@ function seedHeadliner(){ return seed.word(4, 20) }
 function seedDate(){ return seed.date.format("MM-DD-YYYY") }
 function seedStartTime(){ return seed.time([hourType=24]) }
 
-exports.seed = function(knex) {
+exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('events').del()
-    .then(function () {
+    .then(() => {
       // Inserts seed entries
       return knex('events').insert([
         {venue: seedVenue(), headliner: seedHeadliner(), date: seedDate(), startTime: seedStartTime()},

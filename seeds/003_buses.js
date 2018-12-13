@@ -4,7 +4,7 @@ function seedName(){ return seed.name.en.firstName() }
 exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('buses').del()
-    .then(function () {
+    .then(() => {
       // Inserts seed entries
       return knex('buses').insert([
         {capacity: 44, name: seedName()},
