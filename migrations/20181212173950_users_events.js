@@ -1,5 +1,5 @@
 exports.up = (knex) => {
-  return knex.schema.createTable("usersEvents",(table)=>{
+  return knex.schema.createTable("users_events",(table)=>{
     table.increments()
     table.integer("userId").references("users.id")
     table.integer("eventId").references("events.id")
@@ -10,5 +10,5 @@ exports.up = (knex) => {
 }
 
 exports.down = (knex) => {
-  return knex.schema.dropTable("usersEvents")
+  return knex.schema.dropTable("users_events")
 }
