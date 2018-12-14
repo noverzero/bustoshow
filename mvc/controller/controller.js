@@ -1,3 +1,11 @@
 const model = require("../model/model.js")
 
-module.exports = {}
+
+const getOneLocation = (req, res, next) => {
+ {
+   let one = model.getOneLoc()
+ res.status(200).json(one)
+})
+}
+
+module.exports = {getOneLocation}
