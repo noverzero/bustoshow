@@ -1,17 +1,18 @@
 const knex = require('../../knex.js')
 
-
+//errors: return {error: message}
 
 // PICKUP LOCATIONS
 
 // Get All pickup locations
-router.get('/pickup', function(req, res, next){
+const getAllLocations =
   knex('pickup_locations')
   .select('locationName', 'streetAddress')
   .then((data) => {
-  res.status(200).json(data)
+  return data
     })
-  })
+  
+  
   
   
   // Get One pickup location -- this response displays with price and departure time on reservation page.
@@ -60,4 +61,4 @@ router.get('/pickup', function(req, res, next){
 
 module.exports = {
   
-}//knex functions go in here
+}
