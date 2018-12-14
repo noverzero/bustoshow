@@ -1,63 +1,103 @@
+//NOTE: All model does is create objects and return them
+
 const knex = require('../../knex.js')
 
-
+const error = {
+  error: 'message'
+}
 
 // PICKUP LOCATIONS
 
 // Get All pickup locations
-router.get('/pickup', function(req, res, next){
-  knex('pickup_locations')
+const getAllLocations = (eventId) => {
+  knex('trips')
+  .join('pickup_locations', 'pickup_locations.id', 'trips.pickupLocationId')
   .select('locationName', 'streetAddress')
+  .join('events', 'events.id', 'trips.eventId')
+  .select('venue', 'headliner')
+  .where('events.id', eventId)
+  .first()
   .then((data) => {
-  res.status(200).json(data)
+    if (!eventId) {
+      return error
+    }
+    return data
     })
-  })
-  
-  
+}
+
+
   // Get One pickup location -- this response displays with price and departure time on reservation page.
-  
-  router.get('/pickup/:id', function(req, res, next){
-  knex('pickup_locations')
+
+const getOneLocation = (locationId, eventId) => {
+  knex('trips')
+  .join('pickup_locations', 'pickup_locations.id', 'trips.pickupLocationId')
   .select('locationName', 'streetAddress')
-  .where('id', req.params.id)
+  .where('pickupLocations.id', locationId)
+  .first()
+  .join('events', 'events.id', 'trips.eventId')
+  .select('venue', 'headliner')
+  .where('events.id', eventId)
+  .first()
   .then((data) => {
-    res.status(200).json(data[0])
-  })
-  })
-  
+    if (!locationId || !eventId) {
+      return error
+    }
+    return data
+    })
+  }
+
+
   // Post add new location (superadmin or, eventually, seeder )
-  router.post('/pickup', function(req, res, next){
   // use req.body
+  const addNewLocation = (body) => {
+    let streetAddress = body.streetAddress
+    let locationName = body.locationName
   knex('pickup_locations')
-  .insert(req.body)
+  .insert(body)
   .returning(['locationName', 'streetAddress'])
   .then((data) => {
-    res.status(200).json(data[0])
-  })
-  })
-  
+  if (!streetAddress || !locationName) {
+    return error
+  }
+    return data[0]
+    })
+}
+
   // Patch - update location details (superadmin)
-  router.patch('/pickup/:id', function(req, res, next){
-  knex('pickup_locations')
-  .where('id', req.params.id)
-  .update(req.body)
+const updateLocation = (id, body) => {
+  let streetAddress = body.streetAddress
+  let locationName = body.locationName
+knex('pickup_locations')
+  .where('id', id)
+  .update(body)
   .returning(['locationName', 'streetAddress'])
   .then((data) => {
-    res.status(200).json(data[0])
+    if (!streetAddress || !locationName) {
+      return error
+    }
+      return data[0]
   })
-  })
+}
+
   // Delete one pickup location (superadmin)
-  router.delete('/pickup/:id', function(req, res, next){
-  knex('pickup_locations')
-  .where('id', req.params.id)
+const deleteLocation = (id) => {
+knex('pickup_locations')
+  .where('id', id)
   .del('*')
   .returning(['locationName', 'streetAddress'])
   .then((data) => {
-    res.status(200).json(data[0])
-  })
-  })
+    if (!id) {
+      return error
+    }
+    return data
+    })
+  }
 
 
 module.exports = {
-  
-}//knex functions go in here
+  deleteLocation,
+  updateLocation,
+  addNewLocation,
+  getOneLocation,
+  getAllLocations
+}
