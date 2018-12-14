@@ -4,7 +4,7 @@ exports.up = (knex) => {
     table.string('firstName').notNullable()
     table.string('lastName').notNullable()
     table.string('email').notNullable()
-    table.boolean('waiverSign').notNullable().defaultTo('false')
+    table.boolean('isWaiverSigned').notNullable().defaultTo('false')
     table.string('userType').notNullable().defaultTo('standard')
     table.timestamps(true, true)
   })

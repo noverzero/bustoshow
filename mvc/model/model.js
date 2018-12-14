@@ -1,3 +1,8 @@
-// let knex = require('../../knex.js')  //uncomment this when knex.js exists and is connected to databases
+let knex = require('../../knex.js')
 
-module.exports = {}//knex functions go in here
+
+
+
+module.exports = {
+  
+}//knex functions go in here
