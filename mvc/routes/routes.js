@@ -14,7 +14,7 @@ router.delete("/token")// log out
 router.post("/events")//stretch add events
 router.get("/events")// get all events
 router.get("/events/:id")// get an event
-router.get("/events/?")//stretch querie events
+router.get("/events/?")//stretch query events
 router.patch("/event/:id")// update event
 router.delete("/event/:id")// delete event
 //Pickup_locations
