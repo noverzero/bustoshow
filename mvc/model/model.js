@@ -9,10 +9,18 @@ const error = {
 // PICKUP LOCATIONS
 
 // Get All pickup locations
-const getAllLocations = () => {
-  knex('pickup_locations')
+const getAllLocations = (eventId) => {
+  knex('trips')
+  .join('pickup_locations', 'pickup_locations.id', 'trips.pickupLocationId')
   .select('locationName', 'streetAddress')
+  .join('events', 'events.id', 'trips.eventId')
+  .select('venue', 'headliner')
+  .where('events.id', eventId)
+  .first()
   .then((data) => {
+    if (!eventId) {
+      return error
+    }
     return data
     })
 }
@@ -20,12 +28,18 @@ const getAllLocations = () => {
 
   // Get One pickup location -- this response displays with price and departure time on reservation page.
 
-const getOneLocation = (id) => {
-  knex('pickup_locations')
+const getOneLocation = (locationId, eventId) => {
+  knex('trips')
+  .join('pickup_locations', 'pickup_locations.id', 'trips.pickupLocationId')
   .select('locationName', 'streetAddress')
-  .where('id', id)
+  .where('pickupLocations.id', locationId)
+  .first()
+  .join('events', 'events.id', 'trips.eventId')
+  .select('venue', 'headliner')
+  .where('events.id', eventId)
+  .first()
   .then((data) => {
-    if (!id) {
+    if (!locationId || !eventId) {
       return error
     }
     return data
