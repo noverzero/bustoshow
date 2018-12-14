@@ -23,6 +23,7 @@ const createNewEvent = (eventInfo) => {
 const getAllEvents = () => {
   return knex('events')
   .select(['venue', 'headliner', 'date', 'startTime'])
+  .orderBy('date', 'asc')
   .then((events) => {
     return events
   })
