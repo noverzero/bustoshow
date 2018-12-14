@@ -9,6 +9,7 @@ exports.up = (knex) => {
     table.timestamps(true, true)
   })
 }
+//user types = {standard, staff, driver, admin, deactivated}
 
 exports.down = (knex) => {
   return knex.schema.dropTable("events")

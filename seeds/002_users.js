@@ -25,4 +25,4 @@ exports.seed = (knex) => {
     })
 }
 
-
+//user types = {standard, staff, driver, admin, deactivated}
