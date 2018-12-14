@@ -3,8 +3,8 @@ exports.up = (knex) => {
     table.increments()
     table.string("venue").notNullable().defaultTo("")
     table.string("headliner").notNullable().defaultsTo("")
-    table.date("date").notNullable()
-    table.time("startTime").notNullable()
+    table.date("date")
+    table.time("startTime")
     table.timestamps(true,true)
   })
 }
