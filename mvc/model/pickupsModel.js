@@ -8,6 +8,9 @@ const error = {
 
 // PICKUP LOCATIONS
 
+// Get users with reservations at one pickup location for one event
+
+
 // Get All pickup locations
 const getAllLocations = (eventId) => {
   knex('trips')
