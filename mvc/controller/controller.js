@@ -1,5 +1,6 @@
 const pickupsModel = require("../model/pickupsModel.js")
 const eventsModel = require("../model/eventsModel.js")
+const busesModel = require("../model/busesModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -95,31 +96,41 @@ const deletePickupLocation = (req,res,next) => {
     return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
   })
 }
-//bueses
-const getAllBuses = (req,res,next) => {
-//   let getAllB = model.
-//   return getAllB.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllB)
+//buses
+
+const getAllBuses = (req, res, next) => {
+  return busesModel.getAllBuses()
+  .then((getAllB) => {
+    return getAllB.error ? next({status:404, message:"Not found"}) : res.status(200).send(getAllB)
+  })
 }
 
-const getOneBus = (req,res,next) => {
-//   let getOneB = model.
-//   return getOneB.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneB)
+const getOneBus = (req, res, next) => {
+  return busesModel.getOneBus()
+  .then((getOneB) => {
+    return getOneB.error ? next({status:404, messag:"Not found"}) : res.status(200).send(getOneB)
+  })
 }
 
 const createBus = (req,res,next) => {
-//   let createB = model.
-//   return createB.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createB)
+  return busesModel.addNewBus(req.body).then((createBus) => {
+    return createBus.error ? next({status:400,message:"Failed to Post"}) :
+    res.status(201).send(createEvent)
+  })
 }
 
 const updateBus = (req,res,next) => {
-//   let updateB = model.
-//   return updateB.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateB)
+  return busesModel.updateBus(req.params.id).then((updateB) => {
+    return updateB.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateB)
+  })
 }
 
 const deleteBus = (req,res,next) => {
-//   let deleteB = model.
-//   return deleteB.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteB)
+  return busesModel.deleteBus(req.params.id).then((deleteB)=>{
+    return deleteB.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteB)
+  })
 }
+
 
 module.exports = {
   getUser,
