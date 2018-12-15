@@ -1,5 +1,5 @@
 //buses Model
-//busses THESE ARE THE buses ROUTES for reference
+//buses THESE ARE THE buses ROUTES for reference
           //X router.get("/buses", controller.getAllBuses)//get all busses
           //X router.get("/buses/:id", controller.getOneBus)//get one bus
           //Xrouter.post("/buses", controller.createBus)//create a bus
@@ -73,7 +73,7 @@ const deleteBus = (id) => {
   .where('id', id)
   .del('*')
   .returning(['busCode', 'name', 'capacity'])
-  .then(data => data)
+  .then((data) => data)
 }
 
 module.exports = {getAllBuses,getOneBus,addNewBus,updateBus,deleteBus}
