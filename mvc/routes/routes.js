@@ -21,8 +21,8 @@ router.patch("/events/:id", controller.updateEvent)// update event
 router.delete("/events/:id", controller.deleteEvent)// delete event
 
 //Pickup_locations
-router.get("/event/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
-router.get("/event/:id/pickup/:pid", controller.getOnePickupLocation)//get one pickup location for event
+router.get("/events/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
+router.get("/events/:id/pickup/:pid", controller.getOnePickupLocation)//get one pickup location for event
 router.post("/pickup", controller.createPickupLocation)// create pickup location
 router.patch("/pickup/:id", controller.updatePickupLocation)// update pickup location
 router.delete("/pickup/:id", controller.deletePickupLocation)// delete pickup location
