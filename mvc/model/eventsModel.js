@@ -7,9 +7,9 @@ const createNewEvent = (eventInfo) => {
   let headliner = eventInfo.headliner
   let date = eventInfo.date
   let startTime = eventInfo.startTime
-  
+
   if (!venue || !headliner || !date || !startTime) {
-    return error      
+    return error
   }
   return knex('events')
   .insert(eventInfo)
@@ -45,23 +45,19 @@ const getOneEvent = (id) => {
 
 // PATCH /events/:id 	Update a single Event
 const updateOneEvent = (id, eventInfo) => {
-  let venue = eventInfo.venue
-  let headliner = eventInfo.headliner
-  let date = eventInfo.date
-  let startTime = eventInfo.startTime
-console.log(id)
-console.log(eventInfo)
+  const {venue,headliner,date,startTime} = eventInfo
+  if (!venue || !headliner || !date || !startTime) {
+    return error
+  }
   if (!id) {
     return error
-  }  
+  }
   return knex('events')
-  .where('id', id)
-  .update(eventInfo)
-  .returning(['id', 'venue', 'headliner', 'date', 'startTime'])
-  .first()
+  .where('events.id', id)
+  .update({venue,headliner,date,startTime})
+  .returning(["id","venue","headliner","date","startTime"])
   .then((event) => {
-    
-    return event
+    return event[0]
   })
 }
 
@@ -74,9 +70,8 @@ const deleteEvent = (id) => {
   .where('id', id)
   .del()
   .returning('*')
-  .first()
   .then((deleted) => {
-    return deleted
+    return deleted[0]
   })
 }
 

@@ -17,8 +17,8 @@ router.post("/events", controller.createEvents)//stretch add events
 router.get("/events", controller.getAllEvents)// get all events
 router.get("/events/:id", controller.getOneEvent)// get an event
 router.get("/events/?", controller.eventQuery)//stretch querie events
-router.patch("/event/:id", controller.updateEvent)// update event
-router.delete("/event/:id", controller.deleteEvent)// delete event
+router.patch("/events/:id", controller.updateEvent)// update event
+router.delete("/events/:id", controller.deleteEvent)// delete event
 
 //Pickup_locations
 router.get("/event/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
