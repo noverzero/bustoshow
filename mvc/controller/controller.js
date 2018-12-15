@@ -1,5 +1,6 @@
 const pickupsModel = require("../model/pickupsModel.js")
 const eventsModel = require("../model/eventsModel.js")
+const busesModel = require("../model/busesModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -58,7 +59,6 @@ const eventQuery = (req,res,next) => {
 }
 
 const updateEvent = (req,res,next) => {
-  console.log(req.params.id, req.body)
   return eventsModel.updateOneEvent(req.params.id, req.body).then((updateE) => {
     return updateE.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateE)
   })
@@ -72,77 +72,87 @@ const deleteEvent = (req,res,next) => {
 
 //Pickup_locations
 const getAllPickupLocations = (req,res,next) => {
-  let getAllP = pickupsModel.getAllLocations()
-  return getAllP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllP)
+  return pickupsModel.getAllLocations(req.params.id).then((getAllP)=>{
+    return getAllP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllP)
+  })
 }
-
 const getOnePickupLocation = (req,res,next) => {
-  let getOneP = pickupsModel.getOneLocation(req.params.pid,req.params.id)
-  return getOneP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneP)
+  return pickupsModel.getOneLocation(req.params.pid,req.params.id).then((getOneP)=>{
+    return getOneP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneP)
+  })
 }
-
 const createPickupLocation = (req,res,next) => {
-  let createP = model.addNewLocation(req.params.id,req.body)
-  return createP.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createP)
+  return pickupsModel.addNewLocation(req.body).then((createP)=>{
+    return createP.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createP)
+  })
 }
-
 const updatePickupLocation= (req,res,next) => {
-  let updateP = model.updateLocation(req.params.id,req.body)
-  return updateP.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateP)
+  return pickupsModel.updateLocation(req.params.id,req.body).then((updateP)=>{
+    return updateP.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateP)
+  })
 }
-
 const deletePickupLocation = (req,res,next) => {
-  let deleteP = model.deleteLocation(req.params.id)
-  return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
+  return pickupsModel.deleteLocation(req.params.id).then((deleteP)=>{
+    return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
+  })
+}
+//buses
+
+const getAllBuses = (req, res, next) => {
+  return busesModel.getAllBuses()
+  .then((getAllB) => {
+    return getAllB.error ? next({status:404, message:"Not found"}) : res.status(200).send(getAllB)
+  })
 }
 
-//bueses
-const getAllBuses = (req,res,next) => {
-//   let getAllB = model.
-//   return getAllB.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllB)
-}
-
-const getOneBus = (req,res,next) => {
-//   let getOneB = model.
-//   return getOneB.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneB)
+const getOneBus = (req, res, next) => {
+  return busesModel.getOneBus(req.params.id)
+  .then((getOneB) => {
+    return getOneB.error ? next({status:404, messag:"Not found"}) : res.status(200).send(getOneB)
+  })
 }
 
 const createBus = (req,res,next) => {
-//   let createB = model.
-//   return createB.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createB)
+  return busesModel.addNewBus(req.body).then((createBus) => {
+    return createBus.error ? next({status:400,message:"Failed to Post"}) :
+    res.status(201).send(createBus)
+  })
 }
 
 const updateBus = (req,res,next) => {
-//   let updateB = model.
-//   return updateB.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateB)
+  return busesModel.updateBus(req.params.id,req.body).then((updateB) => {
+    return updateB.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateB)
+  })
 }
 
 const deleteBus = (req,res,next) => {
-//   let deleteB = model.
-//   return deleteB.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteB)
+  return busesModel.deleteBus(req.params.id).then((deleteB)=>{
+    return deleteB.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteB)
+  })
 }
 
-module.exports = { 
-  getUser, 
-  createUser, 
-  updateUser, 
-  getToken, 
-  signIn, 
+
+module.exports = {
+  getUser,
+  createUser,
+  updateUser,
+  getToken,
+  signIn,
   logOut,
-  createEvents, 
-  getAllEvents, 
-  getOneEvent, 
-  eventQuery, 
-  updateEvent, 
+  createEvents,
+  getAllEvents,
+  getOneEvent,
+  eventQuery,
+  updateEvent,
   deleteEvent,
-  getAllPickupLocations, 
-  getOnePickupLocation, 
-  createPickupLocation, 
+  getAllPickupLocations,
+  getOnePickupLocation,
+  createPickupLocation,
   updatePickupLocation,
-  deletePickupLocation, 
-  getAllBuses, 
-  getOneBus, 
-  createBus, 
-  updateBus, 
-  deleteBus 
+  deletePickupLocation,
+  getAllBuses,
+  getOneBus,
+  createBus,
+  updateBus,
+  deleteBus
 }

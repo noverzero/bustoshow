@@ -17,12 +17,12 @@ router.post("/events", controller.createEvents)//stretch add events
 router.get("/events", controller.getAllEvents)// get all events
 router.get("/events/:id", controller.getOneEvent)// get an event
 router.get("/events/?", controller.eventQuery)//stretch querie events
-router.patch("/event/:id", controller.updateEvent)// update event
-router.delete("/event/:id", controller.deleteEvent)// delete event
+router.patch("/events/:id", controller.updateEvent)// update event
+router.delete("/events/:id", controller.deleteEvent)// delete event
 
 //Pickup_locations
-router.get("/event/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
-router.get("/event/:id/pickup/:pid", controller.getOnePickupLocation)//get one pickup location for event
+router.get("/events/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
+router.get("/events/:id/pickup/:pid", controller.getOnePickupLocation)//get one pickup location for event
 router.post("/pickup", controller.createPickupLocation)// create pickup location
 router.patch("/pickup/:id", controller.updatePickupLocation)// update pickup location
 router.delete("/pickup/:id", controller.deletePickupLocation)// delete pickup location
