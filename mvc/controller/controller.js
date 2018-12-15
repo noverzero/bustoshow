@@ -36,19 +36,19 @@ const logOut = (req,res,next) => {
 //events
 const createEvents = (req,res,next) => {
   return eventsModel.createNewEvent(req.body).then((createEvent) => {
-  return createEvent.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createEvent)
+    return createEvent.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createEvent)
   })
 }
 
 const getAllEvents = (req,res,next) => {
   return eventsModel.getAllEvents().then((getAllE) => {
-  return getAllE.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllE)
+    return getAllE.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllE)
   })
 }
 
 const getOneEvent = (req,res,next) => {
   return eventsModel.getOneEvent(req.params.id).then((getOneE) => {
-  return getOneE.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneE)
+    return getOneE.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneE)
   })
 }
 
@@ -60,13 +60,13 @@ const eventQuery = (req,res,next) => {
 const updateEvent = (req,res,next) => {
   console.log(req.params.id, req.body)
   return eventsModel.updateOneEvent(req.params.id, req.body).then((updateE) => {
-  return updateE.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateE)
+    return updateE.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateE)
   })
 }
 
 const deleteEvent = (req,res,next) => {
   return eventsModel.deleteEvent(req.params.id).then((deleteE) => {
-  return deleteE.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteE)
+    return deleteE.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteE)
   })
 }
 
