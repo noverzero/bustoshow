@@ -21,7 +21,8 @@ const getAllBuses = () => {
 
 // GET /buses/:id            Retrieve single Event
 const getOneBus = (id) => {
-  if (!id) {
+  if (!id ) {
+    console.log('id inside error', id)
     return {error:"invalid id"}
   }
   return knex('buses')
