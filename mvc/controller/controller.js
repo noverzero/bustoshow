@@ -106,7 +106,7 @@ const getAllBuses = (req, res, next) => {
 }
 
 const getOneBus = (req, res, next) => {
-  return busesModel.getOneBus()
+  return busesModel.getOneBus(req.params.id)
   .then((getOneB) => {
     return getOneB.error ? next({status:404, messag:"Not found"}) : res.status(200).send(getOneB)
   })
@@ -115,12 +115,12 @@ const getOneBus = (req, res, next) => {
 const createBus = (req,res,next) => {
   return busesModel.addNewBus(req.body).then((createBus) => {
     return createBus.error ? next({status:400,message:"Failed to Post"}) :
-    res.status(201).send(createEvent)
+    res.status(201).send(createBus)
   })
 }
 
 const updateBus = (req,res,next) => {
-  return busesModel.updateBus(req.params.id).then((updateB) => {
+  return busesModel.updateBus(req.params.id,req.body).then((updateB) => {
     return updateB.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateB)
   })
 }
