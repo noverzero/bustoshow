@@ -6,6 +6,7 @@ exports.up = (knex) => {
     table.string('email').notNullable()
     table.boolean('isWaiverSigned').notNullable().defaultTo('false')
     table.string('userType').notNullable().defaultTo('standard')
+    table.specificType('hshPwd', 'CHAR(60)')
     table.timestamps(true, true)
   })
 }

@@ -3,6 +3,7 @@ exports.up = (knex) => {
     table.increments()
     table.string("streetAddress").notNullable()
     table.string("locationName").notNullable()
+    table.float("price").notNullable()
   })
 }
 

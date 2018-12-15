@@ -49,7 +49,7 @@ const updateOneEvent = (id, eventInfo) => {
   if (!venue || !headliner || !date || !startTime) {
     return error
   }
-  if (!id) {
+  if (!id || typeof id === 'number') {
     return error
   }
   return knex('events')
@@ -68,10 +68,10 @@ const deleteEvent = (id) => {
   }
   return knex('events')
   .where('id', id)
-  .del()
-  .returning('*')
+  .del('*')
+  .returning(["venue","headliner","date","startTime"])
   .then((deleted) => {
-    return deleted[0]
+    return deleted
   })
 }
 
