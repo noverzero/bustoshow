@@ -8,13 +8,13 @@ const createNewEvent = (eventInfo) => {
   let date = eventInfo.date
   let startTime = eventInfo.startTime
   
+  if (!venue || !headliner || !date || !startTime) {
+    return error      
+  }
   return knex('events')
   .insert(eventInfo)
   .returning(['venue', 'headliner', 'date', 'startTime'])
   .then((data) => {
-    if (!venue || !headliner || !date || !startTime) {
-      return error      
-    }
     return data[0]
   })
 }
@@ -31,49 +31,51 @@ const getAllEvents = () => {
 
 // GET /events/:id			Retrieve single Event
 const getOneEvent = (id) => {
+  if (!id) {
+    return error
+  }
   return knex('events')
   .select(['venue', 'headliner', 'date', 'startTime'])
   .where('id', id)
   .first()
   .then((event) => {
-    if (!id) {
-      return error
-    }
     return event
   })
 }
 
 // PATCH /events/:id 	Update a single Event
-const updateEvent = (id, eventInfo) => {
+const updateOneEvent = (id, eventInfo) => {
   let venue = eventInfo.venue
   let headliner = eventInfo.headliner
   let date = eventInfo.date
   let startTime = eventInfo.startTime
-
+console.log(id)
+console.log(eventInfo)
+  if (!id) {
+    return error
+  }  
   return knex('events')
   .where('id', id)
   .update(eventInfo)
-  .returning(['venue', 'headliner', 'date', 'startTime'])
+  .returning(['id', 'venue', 'headliner', 'date', 'startTime'])
   .first()
   .then((event) => {
-    if (!id) {
-      return error
-    }
+    
     return event
   })
 }
 
 // DELETE /events/:id 	Delete an Event
 const deleteEvent = (id) => {
+  if(!id) {
+    return error
+  }
   return knex('events')
   .where('id', id)
   .del()
   .returning('*')
   .first()
   .then((deleted) => {
-    if(!id) {
-      return error
-    }
     return deleted
   })
 }
@@ -86,5 +88,5 @@ module.exports = {
   deleteEvent,
   getAllEvents,
   getOneEvent,
-  updateEvent
+  updateOneEvent
 }
