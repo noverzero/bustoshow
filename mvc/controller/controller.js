@@ -1,6 +1,8 @@
 const pickupsModel = require("../model/pickupsModel.js")
 const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
+const tokenModel = require("../model/tokenModel.js")
+
 
 //users
 const getUser = (req,res,next) => {
@@ -9,29 +11,30 @@ const getUser = (req,res,next) => {
 }
 
 const createUser = (req,res,next) => {
-//   let createU = model.
-//   return createU.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createU)
+//   let userCreated = model.
+//   return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
 }
 
 const updateUser = (req,res,next) => {
-//   let updateU = model.
-//   return updateU.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateU)
+//   let userUpdated = model.
+//   return userUpdated.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(userUpdated)
 }
 
 //token
 const getToken = (req,res,next) => {
-//   let getT = model.
-//   return getT.error ? next({status:404,message:"Not found"}) : res.status(200).send(getT)
+  return tokenModel.checkToken(req.cookies.token).then((tokenChecked) => {
+    return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
+  }) 
 }
 
 const signIn = (req,res,next) => {
-//   let sI = model.
-//   return sI.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(sI)
+  // return tokenModel.
+  // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
 }
 
 const logOut = (req,res,next) => {
-//   let lo = model.
-//   return lo.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(lo)
+  // return = tokenModel.logOut
+  // return lo.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(lo)
 }
 
 //events
