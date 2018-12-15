@@ -1,11 +1,4 @@
-//NOTE: All model does is create objects and return them
-
 const knex = require('../../knex.js')
-
-const error = {
-  error: 'message'
-}
-
 // PICKUP LOCATIONS
 
 // Get All pickup locations
@@ -20,9 +13,7 @@ const getAllLocations = (eventId) => {
   .where("trips.eventId",eventId)
   .innerJoin("events","trips.eventId","events.id")
   .select("headliner","venue","startTime")
-  .then((data) => {
-    return data
-  })
+  .then((data) => data)
 }
 
 
@@ -63,29 +54,25 @@ const updateLocation = (id, body) => {
   let streetAddress = body.streetAddress
   let locationName = body.locationName
   if (!streetAddress || !locationName) {
-    return error
+    return {error: "fill out fields"}
   }
   return knex('pickup_locations')
   .where('id', id)
   .update(body)
   .returning(['locationName', 'streetAddress'])
-  .then((data) => {
-    return data[0]
-  })
+  .then((data) => data[0])
 }
 
   // Delete one pickup location (superadmin)
 const deleteLocation = (id) => {
   if (!id) {
-    return error
+    return {error:"can't delete that id"}
   }
   return knex('pickup_locations')
   .where('id', id)
   .del('*')
   .returning(['locationName', 'streetAddress'])
-  .then((data) => {
-    return data
-  })
+  .then(data => data)
 }
 
 
