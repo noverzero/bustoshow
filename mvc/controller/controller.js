@@ -71,27 +71,27 @@ const deleteEvent = (req,res,next) => {
 
 //Pickup_locations
 const getAllPickupLocations = (req,res,next) => {
-  return model.getAllLocations(req.params.id).then((getAllP)=>{
+  return pickupsModel.getAllLocations(req.params.id).then((getAllP)=>{
     return getAllP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getAllP)
   })
 }
 const getOnePickupLocation = (req,res,next) => {
-  return model.getOneLocation(req.params.pid,req.params.id).then((getOneP)=>{
+  return pickupsModel.getOneLocation(req.params.pid,req.params.id).then((getOneP)=>{
     return getOneP.error ? next({status:404,message:"Not found"}) : res.status(200).send(getOneP)
   })
 }
 const createPickupLocation = (req,res,next) => {
-  return model.addNewLocation(req.body).then((createP)=>{
+  return pickupsModel.addNewLocation(req.body).then((createP)=>{
     return createP.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(createP)
   })
 }
 const updatePickupLocation= (req,res,next) => {
-  return model.updateLocation(req.params.id,req.body).then((updateP)=>{
+  return pickupsModel.updateLocation(req.params.id,req.body).then((updateP)=>{
     return updateP.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updateP)
   })
 }
 const deletePickupLocation = (req,res,next) => {
-  return model.deleteLocation(req.params.id).then((deleteP)=>{
+  return pickupsModel.deleteLocation(req.params.id).then((deleteP)=>{
     return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
   })
 }
