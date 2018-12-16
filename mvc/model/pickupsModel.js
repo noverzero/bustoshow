@@ -41,7 +41,7 @@ const pul1 = () => {
   .innerJoin("trips","trips.pickupLocationId","pickup_locations.id")
   .select("departureTime")
   .innerJoin("events","trips.eventId","events.id")
-  .select("headliner","venue","startTime","events.id")
+  .select("headliner","venue","startTime","events.id","date")
   .then((data) => data)
 }
 const pul2 = (id) => {
