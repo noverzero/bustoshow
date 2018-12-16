@@ -19,7 +19,7 @@ const getAllBuses = () => {
   })
 }
 
-// GET /buses/:id            Retrieve single Event
+// GET /buses/:id            Retrieve single Bus
 const getOneBus = (id) => {
   if (!id ) {
     console.log('id inside error', id)
