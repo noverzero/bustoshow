@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         pickupOption.innerText = `${service} | ${time} ${location} to ${headliner} at ${venue} ${rTrip} \n Price: $${price} \n ${saleEnd}`
 
-        if(option.headliner === eventInfo.headliner){
+        if(option.headliner === eventInfo.headliner && moment(option.date).format("MM/DD/YY") === date){
           modalTitle.appendChild(row)
           row.appendChild(pickupOption)
         }
