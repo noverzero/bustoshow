@@ -96,6 +96,16 @@ const deletePickupLocation = (req,res,next) => {
     return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
   })
 }
+const pulA = (req,res,next) => {
+  return pickupsModel.pul1().then((pulAA)=>{
+    return pulAA.error ? next({status:404,message:"not foune"}) : res.status(200).send(pulAA)
+  })
+}
+const pulO = (req,res,next) => {
+  return pickupsModel.pul2(req.params.id).then((pulOO)=>{
+    return pulOO.error ? next({status:404,message:"not foune"}) : res.status(200).send(pulOO)
+  })
+}//I dont know why I thought this needed to exist but its here
 //buses
 
 const getAllBuses = (req, res, next) => {
@@ -150,6 +160,8 @@ module.exports = {
   createPickupLocation,
   updatePickupLocation,
   deletePickupLocation,
+  pulA,
+  pulO,
   getAllBuses,
   getOneBus,
   createBus,
