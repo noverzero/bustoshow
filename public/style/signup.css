@@ -1,0 +1,38 @@
+@media (max-width: 1500px) {
+  body{
+    background-color: #f9f9f9;
+  }
+
+  .signup-field{
+    background-color: #f9f9f9;
+    margin-top: 10%;
+    height: auto;
+  }
+
+  .btn-large{
+    background-color: #ff420f;
+    color: #ffffff;
+  }
+
+  .btn-large:hover{
+    background-color: #ffffff;
+    color: #ff420f;
+  }
+
+  .navbar-fixed{
+    background-color: #ff420f;
+    height: 12vh;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .navbar-fixed{
+    background-color: #ff420f;
+    height: 10vh;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}

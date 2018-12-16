@@ -35,6 +35,28 @@ const getOneLocation = (locationId, eventId) => {
   .then(data => data)
 }
 
+const pul1 = () => {
+  return knex("pickup_locations")
+  .select("streetAddress","locationName","price")
+  .innerJoin("trips","trips.pickupLocationId","pickup_locations.id")
+  .select("departureTime")
+  .innerJoin("events","trips.eventId","events.id")
+  .select("headliner","venue","startTime","events.id")
+  .then((data) => data)
+}
+const pul2 = (id) => {
+  if (!id) {
+    return {error:"bad id"}
+  }
+  return knex("pickup_locations")
+  .select("streetAddress","locationName","price")
+  .where("pickup_locations.id",id)
+  .innerJoin("trips","trips.pickupLocationId","pickup_locations.id")
+  .select("departureTime")
+  .innerJoin("events","trips.eventId","events.id")
+  .select("headliner","venue","startTime")
+  .then(data => data)
+}//I dont know why i thought this needed to exist but it does
 
   // Post add new location (superadmin or, eventually, seeder )
   // use req.body
@@ -81,5 +103,7 @@ module.exports = {
   updateLocation,
   addNewLocation,
   getOneLocation,
-  getAllLocations
+  getAllLocations,
+  pul1,
+  pul2
 }

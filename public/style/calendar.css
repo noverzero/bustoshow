@@ -1,0 +1,123 @@
+@media (max-width: 15000px) {
+  .calendar-section {
+    min-height: 200vh;
+    max-height: auto;
+    width: 100vw;
+  }
+
+  .event-header {
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 2%;
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+  .make-top {
+    background-color: #ff420f;
+    z-index: 10;
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+  .row-big {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .row-header {
+    background-color: #000000;
+    color: #ffffff;
+    height: 7vh;
+    text-align: center;
+    border-bottom: solid;
+    border-right: solid;
+    border-color: #ffffff;
+    border-width: thin;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+  }
+
+  .row-element {
+    background-color: #ffffff;
+    height: 7vh;
+    text-align: center;
+    border-bottom: solid;
+    border-right: solid;
+    border-color: #000000;
+    border-width: thin;
+    font-family: 'Raleway', sans-serif;
+    float: left;
+  }
+
+  .row-header:last-of-type {
+    border-right: none;
+  }
+
+  .row-element-last {
+    border-right: none;
+  }
+
+  .event-btn {
+    background-color: rgba(0, 0, 0, 0);
+    color: #ff420f;
+  }
+
+  #events-row {
+    margin-top: -10vh;
+  }
+
+  .event-btn:hover {
+    background-color: #ff420f;
+    color: #ffffff;
+  }
+
+  .pickupOpt {
+    font-size: 15px;
+  }
+
+  .pickupOpt:first-of-type {
+    margin-top: 3vh;
+  }
+}
+
+@media (max-width: 580px){
+  .content-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background: url('/images/bts-future-selves-background-image.png') no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .container{
+    width: 100vw;
+  }
+
+  .row-header{
+    font-size: 12px;
+  }
+
+  .row-element{
+    font-size: 12px;
+    overflow: hidden;
+  }
+
+  .event-btn{
+    font-size: 12px;
+    padding: 5%;
+  }
+
+  .event-header{
+    margin-top: 20%;
+  }
+  .date-div{
+    text-align: center
+  }
+}

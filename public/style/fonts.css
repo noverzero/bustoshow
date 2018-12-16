@@ -1,0 +1,26 @@
+h1{
+  font-size: 72px;
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+}
+
+h2{
+  font-family: 'Bree Serif', serif;
+}
+
+h3{
+  font-family: 'Raleway', sans-serif;
+}
+
+a{
+  font-size: 14px;
+}
+
+.nav-link, .modal-trigger{
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.sidenav-link{
+  font-family: 'Raleway', sans-serif;
+}
