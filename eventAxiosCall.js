@@ -6,7 +6,7 @@ const PLEASE = () =>{
     let firstBankEventArray = firstBank.data._embedded.events,
     venueF = firstBankEventArray[0]._embedded.venues[0].name,
     redRocksEventArray = redRocks.data._embedded.events,
-    venueR = redRocksEventArray[0]._embedded.venues[0].name
+    venueR = redRocksEventArray[0]._embedded.venues[0].name,
     seedArray = firstBankEventArray.reduce((a,e)=>{
       let holder = {
         venue:venueF,
