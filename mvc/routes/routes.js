@@ -23,6 +23,8 @@ router.delete("/events/:id", controller.deleteEvent)// delete event
 //Pickup_locations
 router.get("/events/:id/pickup", controller.getAllPickupLocations)// get all pickup locations for event
 router.get("/events/:id/pickup/:pid", controller.getOnePickupLocation)//get one pickup location for event
+router.get("/pickup",controller.pulA)//for homepage
+router.get("/pickup/:id",controller.pulO)//this gets all instances of the same pickup location and isn't dependent on what show that pickup location is being used
 router.post("/pickup", controller.createPickupLocation)// create pickup location
 router.patch("/pickup/:id", controller.updatePickupLocation)// update pickup location
 router.delete("/pickup/:id", controller.deletePickupLocation)// delete pickup location
