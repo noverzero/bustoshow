@@ -31,16 +31,16 @@ const getToken = (req,res,next) => {
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
-    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.status(200).send(loginValidate)
+    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.loginValidate
   })
   // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
 }
 
 const logOut = (req,res,next) => {
-  // return tokenModel.logOutUser(req).then((tokenDeleted) => {
-    // return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
-  // })
-  return res.tokenModel.logOutUser(req)
+  return tokenModel.logOutUser(req).then((tokenDeleted) => {
+    return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
+  })
+  // return res.tokenModel.logOutUser(req)
 }
 
 //events
