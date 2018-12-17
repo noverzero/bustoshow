@@ -12,7 +12,7 @@ const getUser = (req,res,next) => {
 
 const createUser = (req,res,next) => {
   return usersModel.addNewUser(req.body).then((userCreated) => {
-    
+
     // const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
     // res.cookie('token', token, { httpOnly: true })
     return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
@@ -40,9 +40,8 @@ const signIn = (req,res,next) => {
     } else {
       console.log(loginValidate)
       res.cookie('token', loginValidate, { httpOnly: true })
-      .redirect('/the page.html')
+      .redirect('http://localhost:3000')
     }
-  // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
   })
 }
 
