@@ -77,11 +77,18 @@ const addNewUser = (body) => {
     let hshPwd = bcrypt.hashSync(plainTextPassword, 8)
     return knex('users')
     .insert({firstName, lastName, email, isWaiverSigned, userType, hshPwd})
-    .returning("*")
+    .returning("firstName","lastName","email","isWaiverSigned","userType")
     .then(data => data[0])
   })
 }
-
+//patch route for updating user
+const editUserInfo = (userId, updatedInfo) => {
+  const {firstName, lastName, email, userType, password} = updatedInfo
+  if(!userId){
+    return {error:"invalid ID"}
+  }
+  if(!firstName||!lastName||!email){}
+}
 // PATCH /user/:id 	Update a single user
 // const updateUser = (id, userInfo) => {
 //   const {userCode,name,capacity} = userInfo
