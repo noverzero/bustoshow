@@ -1,5 +1,7 @@
 const knex = require("../../knex.js")
-
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const loginKey = process.env.JWT_KEY
 // const checkToken = require('checkToken')
 // const logInUser = require('logInUser')
 // const logOutUser = require('logOutUser')
@@ -78,7 +80,9 @@ const addNewUser = (body) => {
     return knex('users')
     .insert({firstName, lastName, email, isWaiverSigned, userType, hshPwd})
     .returning("*")
-    .then(data => data[0])
+    .then(data => {
+      return data[0]
+    })
   })
 }
 
