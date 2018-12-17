@@ -40,7 +40,7 @@ const signIn = (req,res,next) => {
     } else {
       console.log(loginValidate)
       res.cookie('token', loginValidate, { httpOnly: true })
-      .redirect('http://localhost:3000')
+      .redirect('/')
     }
   })
 }
