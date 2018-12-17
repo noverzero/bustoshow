@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     axios.post("/routes/token",loginObject).then((e)=>{
       console.log(e);
       console.log("login success");
+      window.location.href = "/"
     })
   })
 

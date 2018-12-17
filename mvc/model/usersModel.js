@@ -132,6 +132,7 @@ const editUserInfo = (userId, updatedInfo) => {
 // }
 
 module.exports = {
+
   getAllUsersEmails,
   // getOneUser,
   addNewUser,
