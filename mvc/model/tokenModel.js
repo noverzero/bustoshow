@@ -34,14 +34,15 @@ const logInUser = (user) => {
     })
     .then((passwordMatch) => {
       if (passwordMatch) {
-        delete currentUser.hshPwd //dont want to delete our database hashed passwords
+        delete currentUser.hshPwd
         const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
         return token
       }
       return error
-    }).catch(err=>error)
-}
-
+    })
+    .catch( err => error )
+  }
+  
 module.exports = {
   checkToken,
   logInUser

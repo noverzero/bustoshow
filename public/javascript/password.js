@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const newPassword = document.querySelector('#new-password')
 
   //req.body for login
-  const em = document.getElementById("icon_prefix1")
-  const pw = document.getElementById("icon_password")
+  const emailLogin = document.getElementById("icon_prefix1")
+  const passwordLogin = document.getElementById("icon_password")
   const tokenButton = document.getElementById("logInButton")
 
 
@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     })
   })
 
-  tokenButton.addEventListener("click",(e)=>{
-    console.log(em.value);
-    console.log(pw.value);
+  tokenButton.addEventListener("click",(event)=>{
+    console.log(emailLogin.value);
+    console.log(passwordLogin.value);
     console.log("click success");
-    let loginObject = {email:em.value,password:pw.value}
-    axios.post("/routes/token",loginObject).then((el)=>{
-      console.log(el);
+    let loginObject = {email:emailLogin.value,password:passwordLogin.value}
+    axios.post("/routes/token",loginObject).then((e)=>{
+      console.log(e);
       console.log("login success");
       window.location.href = "/"
     })

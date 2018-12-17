@@ -1,4 +1,5 @@
 const axios = require("axios")
+require("dotenv").config()
 
 const PLEASE = () =>{
   return axios.all([axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAaeIvA`),axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAa1JnA`)]).then(axios.spread((redRocks,firstBank)=>{
