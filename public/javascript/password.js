@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   console.log("It's Alive")
   M.AutoInit();
 
+  //req.body for new users
   const password = document.querySelector('#new-password')
   const passConfirm = document.querySelector('#new-password-confirm')
   const success = document.querySelector('#password-confirm')
@@ -10,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const newLastName = document.querySelector('#new-last-name')
   const newEmail = document.querySelector('#new-email')
   const newPassword = document.querySelector('#new-password')
+
+  //req.body for login
+  const em = document.getElementById("icon_prefix1")
+  const pw = document.getElementById("icon_password")
+  const tokenButton = document.getElementById("logInButton")
 
 
   passConfirm.addEventListener('keyup', (event) => {
@@ -28,6 +34,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
     console.log("i hear a click on createAccount!")
     axios.post("/routes/users", {firstName:'johnny', lastName:'Lawrence', email:'johny@cobrakai.com', isWaiverSigned:'yes', userType: 'standard', plainTextPassword: 'atleasteightcharacters'} ).then((response) => {
       console.log("dustins axios.post response.data:::", response.data)
+    })
+  })
+
+  tokenButton.addEventListener("click",(e)=>{
+    console.log(em.value);
+    console.log(pw.value);
+    console.log("click success");
+    let loginObject = {email:em.value,password:pw.value}
+    axios.post("/routes/token",loginObject).then((e)=>{
+      console.log(e);
+      console.log("login success");
     })
   })
 
