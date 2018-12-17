@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     })
   })
 
-  tokenButton.addEventListener("click",(e)=>{
+  tokenButton.addEventListener("click",(event)=>{
     console.log(emailLogin.value);
     console.log(passwordLogin.value);
     console.log("click success");

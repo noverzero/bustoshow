@@ -41,8 +41,9 @@ const logInUser = (user) => {
       }
       return error
     })
-}
-
+    .catch( err => error )
+  }
+  
 module.exports = {
   checkToken,
   logInUser

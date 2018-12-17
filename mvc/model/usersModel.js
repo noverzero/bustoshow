@@ -36,7 +36,7 @@ const bcrypt = require('bcryptjs')
 
 
 //get all users (admin)
-const getAllUsers = () => {
+const getAllUsersEmails = () => {
   return knex('users')
   .select('email')
   .then((users) => {
@@ -69,10 +69,9 @@ const addNewUser = (body) => {
   if (!firstName || !lastName || !email || !isWaiverSigned || !plainTextPassword) {
     return {error:"fields required"}
   }
-  return getAllUsers().then((userArr)=>{
+  return getAllUsersEmails().then((userArr)=>{
     for(let i = 0; i < userArr.length; i++){
       if(userArr[i].email == email){
-        console.log("here?");
         return {error:"this email is already registered"}
       }
     }
@@ -80,42 +79,40 @@ const addNewUser = (body) => {
     return knex('users')
     .insert({firstName, lastName, email, isWaiverSigned, userType, hshPwd})
     .returning("firstName","lastName","email","isWaiverSigned","userType")
-    .then(data => data[0])
+    .then(newUser => newUser[0])
   })
 }
-//patch route for updating user // update userType needs to be a separate function
-// const editUserInfo = (userId, updatedInfo) => {
-//   const {firstName, lastName, email, password} = updatedInfo
-//   if (!userId) {
-//     return {error:"invalid ID"}
-//   } 
-//   else if (email) {
-//     return getAllUsers().then((userArr)=>{
-//       for(let i = 0; i < userArr.length; i++){
-//         if(userArr[i].email == email){
-//           console.log("here?");
-//           return {error:"this email is already registered"}
-//         }
-//       }
-//     })
-//   }
-                      // PATCH /user/:id 	Update a single user
-                      // const updateUser = (id, userInfo) => {
-                      //   const {userCode,name,capacity} = userInfo
-                      //   if(!userCode||!name||!capacity){
-                      //     return {error:"fields required"}
-                      //   }
-                      //   if (!id) {
-                      //     return {error:"invalid id"}
-                      //   }
-                      //   return knex('users')
-                      //   .where('id', id)
-                      //   .update(userInfo)
-                      //   .returning(['firstName', 'last_name'])
-                      //   .then((user) => {
-                      //     return user[0]
-                      //   })
-                      // }
+
+// patch route for updating user // update userType needs to be a separate function
+const editUserInfo = (userId, updatedInfo) => {
+  if (!userId) {
+    return {error:"invalid ID"}
+  } 
+  if (updatedInfo.email) {
+    return getAllUsersEmails()
+    .then((userArr) => {
+      // console.log(userArr)
+      let result = true
+      for (let i = 0; i < userArr.length; i++){
+        if (userArr[i].email === updatedInfo.email){
+          result = false
+        }
+      }
+      if (result) { 
+        return knex('users')
+          .where('id', userId)
+          .update(updatedInfo)
+          .returning(["firstName", "lastName", "email"])
+        .then((updatedUser) => {
+          return updatedUser[0]
+        })
+      } else {
+        return {error:"email is already registered"}
+      }
+    })
+  }  
+}
+
 // // PATCH /user/:id 	ADMIN - deactivate a single user
 // const updateUser = (id, userInfo) => {
 //   const {userCode,name,capacity} = userInfo
@@ -135,9 +132,9 @@ const addNewUser = (body) => {
 // }
 
 module.exports = {
-  getAllUsers,
+  getAllUsersEmails,
   // getOneUser,
-  addNewUser
-  // updateUser,
+  addNewUser,
+  editUserInfo
   // deleteUser
 }

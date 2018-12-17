@@ -20,8 +20,9 @@ const createUser = (req,res,next) => {
 }
 
 const updateUser = (req,res,next) => {
-//   let userUpdated = model.
-//   return userUpdated.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(userUpdated)
+  return usersModel.editUserInfo(req.params.id, req.body).then((updatedUserInfo) => {
+    return updatedUserInfo.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updatedUserInfo)
+  })
 }
 
 //token
@@ -33,6 +34,7 @@ const getToken = (req,res,next) => {
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
+    console.log("loginValidate.error:",loginValidate.error)
     if (loginValidate.error) {
       next({
         status:400,message:"Invalid username or password"
