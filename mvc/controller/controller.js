@@ -2,6 +2,7 @@ const pickupsModel = require("../model/pickupsModel.js")
 const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
+const usersModel = require("../model/usersModel.js")
 
 
 //users
@@ -11,8 +12,9 @@ const getUser = (req,res,next) => {
 }
 
 const createUser = (req,res,next) => {
-//   let userCreated = model.
-//   return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
+  return usersModel.addNewUser(req.body).then((userCreated) => {
+    return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
+  })
 }
 
 const updateUser = (req,res,next) => {
@@ -24,12 +26,12 @@ const updateUser = (req,res,next) => {
 const getToken = (req,res,next) => {
   return tokenModel.checkToken(req.header.cookie).then((tokenChecked) => {
     return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
-  }) 
+  })
 }
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
-    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.status(200).send(loginValidate)
+    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.loginValidate
   })
   // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
 }
@@ -38,6 +40,7 @@ const logOut = (req,res,next) => {
   return tokenModel.logOutUser(req).then((tokenDeleted) => {
     return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
   })
+  // return res.tokenModel.logOutUser(req)
 }
 
 //events
@@ -102,6 +105,16 @@ const deletePickupLocation = (req,res,next) => {
     return deleteP.error ? next({status:404,message:"Failed to Delete"}) : res.status(204).send(deleteP)
   })
 }
+const pulA = (req,res,next) => {
+  return pickupsModel.pul1().then((pulAA)=>{
+    return pulAA.error ? next({status:404,message:"not foune"}) : res.status(200).send(pulAA)
+  })
+}
+const pulO = (req,res,next) => {
+  return pickupsModel.pul2(req.params.id).then((pulOO)=>{
+    return pulOO.error ? next({status:404,message:"not foune"}) : res.status(200).send(pulOO)
+  })
+}//I dont know why I thought this needed to exist but its here
 //buses
 
 const getAllBuses = (req, res, next) => {
@@ -156,6 +169,8 @@ module.exports = {
   createPickupLocation,
   updatePickupLocation,
   deletePickupLocation,
+  pulA,
+  pulO,
   getAllBuses,
   getOneBus,
   createBus,

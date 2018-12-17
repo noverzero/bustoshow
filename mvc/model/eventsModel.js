@@ -22,7 +22,7 @@ const createNewEvent = (eventInfo) => {
 // GET /events         Retrieve all Events
 const getAllEvents = () => {
   return knex('events')
-  .select(['venue', 'headliner', 'date', 'startTime'])
+  .select(["id",'venue', 'headliner', 'date', 'startTime'])
   .orderBy('date', 'asc')
   .then((events) => {
     return events
