@@ -1,4 +1,8 @@
 @media (max-width: 15000px) {
+  html, body{
+    background-color: #808080;
+  }
+
   .content-wrapper{
     background-image: none;
     background-color: #808080;
@@ -18,7 +22,6 @@
     width: 150px;
     float: right;
   }
-
 
   .redText{
     color: red;
@@ -51,4 +54,19 @@
     background-color: #fefde5 !important;
   }
 
+}
+
+@media (max-width: 15000px) {
+  .payment-field{
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .nav-wrapper{
+    position: relative;
+  }
+
+  #email_payment{
+    width: 80vw;
+  }
 }
