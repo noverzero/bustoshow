@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   console.log("It's Alive")
   M.AutoInit();
-  axios.all([axios.get("/routes/events"),axios.get("/routes/pickup")]).then(axios.spread((eventss,pickupss)=>{
-    console.log(eventss.data);
-    console.log(pickupss.data);
+  axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
     pickupArr = [...pickupss.data]
     eventsArr = [...eventss.data]
 
@@ -79,12 +77,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       // USE WITH Location
       pickupArr.forEach(option => {
-        let service = "Bueses To Show"
+        let service = "Bus To Show"
         let time = option.departureTime
         let location = option.locationName
-        let headliner = option.headliner
+        let optHeadliner = option.headliner
         let venue = option.venue
         let price = option.price
+        let optDate = option.date
         let saleEnd = "11:30PM Day of Show"
         let roundTrip = true
         let rTrip
@@ -93,26 +92,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         let row = document.createElement('div')
         let pickupOption = document.createElement('div')
+        let ticketQuantity = document.createElement('div')
+        let ticketSelect = document.createElement('input')
 
         row.setAttribute('class', 'row')
-        pickupOption.setAttribute('class', 'pickupOpt col s12 l12')
+        pickupOption.setAttribute('class', 'pickupOpt col s10 l11')
+        ticketQuantity.setAttribute('class', 'col s2 l1 ticket-quantity-field')
+        ticketSelect.setAttribute('type', 'number')
+        ticketSelect.setAttribute('class', 'input validate ticket-input')
+
+
 
         pickupOption.innerText = `${service} | ${time} ${location} to ${headliner} at ${venue} ${rTrip} \n Price: $${price} \n ${saleEnd}`
 
-        if(option.headliner === eventInfo.headliner && moment(option.date).format("MM/DD/YY") === date){
+        if (optHeadliner === headliner && moment(optDate).format("MM/DD/YY") === date) {
           modalTitle.appendChild(row)
           row.appendChild(pickupOption)
+          row.appendChild(ticketQuantity)
+          ticketQuantity.appendChild(ticketSelect)
         }
       })
     })
 
     // Book Button
+
+    const ticketInput = document.querySelectorAll('.ticket-input')
     const bookBtn = document.querySelector('.book-btn')
 
-    bookBtn.addEventListener('click', (event) => {
-      console.log('Book button clicked from modal')
-      bookBtn.setAttribute('class', 'modal-close')
+    bookBtn.addEventListener('click', function(){
+      console.log(ticketInput.value)
+
     })
+
+
 
     // Sort (Stretch)
 
