@@ -18,8 +18,7 @@ const checkToken = (cookie) => {
   })
 }
 
-// validate login attempt
-
+// validate login 
 const logInUser = (user) => {
   let currentUser
 
@@ -44,14 +43,7 @@ const logInUser = (user) => {
     })
 }
 
-const logOutUser = (cookie) => {
-  console.log("logouthappen")
-  return res.cookie('token', '', { httpOnly: true })//does this work? check controller. should we just write these in the controller so that the res and req are defined?
-}
-
 module.exports = {
   checkToken,
-  logInUser,
-  logOutUser
-
+  logInUser
 }
