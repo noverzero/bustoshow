@@ -33,9 +33,17 @@ const getToken = (req,res,next) => {
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
-    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.loginValidate
-  })
+    if (loginValidate.error) {
+      next({
+        status:400,message:"Invalid username or password"
+      })
+    } else {
+      console.log(loginValidate)
+      res.cookie('token', loginValidate, { httpOnly: true })
+      .redirect('/the page.html')
+    }
   // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
+  })
 }
 
 const logOut = (req,res,next) => {
