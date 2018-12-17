@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   console.log("It's Alive")
   M.AutoInit();
 
-  const reservationPostLocation = 'http://bustoshow.herokuapp.com'
+  const reservationPostLocation = '/payment.html'
 
   axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
     pickupArr = [...pickupss.data]
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       bookSeat.setAttribute('onclick', 'submit()')
       modalFooter.setAttribute('class', 'modal-footer')
       form.setAttribute('action', reservationPostLocation)
-      form.setAttribute('method', 'post')
+      // form.setAttribute('method', 'post')
 
 
       bookSeat.innerText = "Book Seat"
