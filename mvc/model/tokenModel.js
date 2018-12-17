@@ -23,7 +23,7 @@ const checkToken = (cookie) => {
 const logInUser = (user) => {
   let currentUser
 
-  knex('users')
+  return knex('users')
     .where('email', user.email)
     .select('*')
     .first()
@@ -36,12 +36,9 @@ const logInUser = (user) => {
     })
     .then((passwordMatch) => {
       if (passwordMatch) {
-        delete currentUser.hshPwd //dont want to delete our database hashed passwords
+        delete currentUser.hshPwd
         const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
         return token
-        //does the token carry over from this to the other function the way i've edited it?
-        //return currentUser
-        console.log("SUCCESS!")//dont want to delete the hashed pass or return it to the user
       }
       return error
     })

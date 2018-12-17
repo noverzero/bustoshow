@@ -40,9 +40,8 @@ const signIn = (req,res,next) => {
     } else {
       console.log(loginValidate)
       res.cookie('token', loginValidate, { httpOnly: true })
-      .redirect('/the page.html')
+      .redirect('localhost:3000')
     }
-  // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
   })
 }
 

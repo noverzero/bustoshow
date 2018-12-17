@@ -7,7 +7,7 @@ const loginKey = process.env.JWT_KEY
 // const logOutUser = require('logOutUser')
 const bcrypt = require('bcryptjs')
 
-//These are the "user" paths fronm routes.js for reference
+//These are the "user" paths from routes.js for reference
     // //users
     // router.get("/users/:id", controller.getUser)//get user profile
     // router.post("/users", controller.createUser)//create new user
