@@ -8,12 +8,12 @@ const bcrypt = require('bcryptjs')
 
 // check if logged in
 const checkToken = (cookie) => {
-  return jwt.verify(cookie, loginKey, (err) => {
+  return jwt.verify(cookie, loginKey, (err,decoded) => {
     if (!err) {
-      return true
+      return {boolean:true,obj:decoded}
     }
     else {
-      return false
+      return {boolean:false,obj:{firstName:"",lastName:""}}
     }
   })
 }
