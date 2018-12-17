@@ -5,8 +5,8 @@ const error = { status: 400, message: 'Bad email or password' }
 const bcrypt = require('bcryptjs')
 
 // check if logged in
-const checkToken = (token) => {
-  jwt.verify(token, loginKey, (err) => {
+const checkToken = (cookie) => {
+  jwt.verify(cookie.token, loginKey, (err) => {
     if (err) {
       res.send(false)
     }
@@ -43,7 +43,7 @@ const logInUser = (user) => {
     })
 }
 
-const logOutUser = (cookie) => {
+const logOutUser = () => {
   res.cookie('token', '', { httpOnly: true })
   .send()
 }

@@ -22,7 +22,7 @@ const updateUser = (req,res,next) => {
 
 //token
 const getToken = (req,res,next) => {
-  return tokenModel.checkToken(req.cookie.token).then((tokenChecked) => {
+  return tokenModel.checkToken(req.header.cookie).then((tokenChecked) => {
     return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
   }) 
 }
