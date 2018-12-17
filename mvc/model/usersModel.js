@@ -1,5 +1,7 @@
 const knex = require("../../knex.js")
-
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const loginKey = process.env.JWT_KEY
 // const checkToken = require('checkToken')
 // const logInUser = require('logInUser')
 // const logOutUser = require('logOutUser')
@@ -71,34 +73,49 @@ const addNewUser = (body) => {
     for(let i = 0; i < userArr.length; i++){
       if(userArr[i].email == email){
         console.log("here?");
-        return {error:"this address is already registered"}
+        return {error:"this email is already registered"}
       }
     }
     let hshPwd = bcrypt.hashSync(plainTextPassword, 8)
     return knex('users')
     .insert({firstName, lastName, email, isWaiverSigned, userType, hshPwd})
-    .returning("*")
+    .returning("firstName","lastName","email","isWaiverSigned","userType")
     .then(data => data[0])
   })
 }
-
-// PATCH /user/:id 	Update a single user
-// const updateUser = (id, userInfo) => {
-//   const {userCode,name,capacity} = userInfo
-//   if(!userCode||!name||!capacity){
-//     return {error:"fields required"}
+//patch route for updating user // update userType needs to be a separate function
+// const editUserInfo = (userId, updatedInfo) => {
+//   const {firstName, lastName, email, password} = updatedInfo
+//   if (!userId) {
+//     return {error:"invalid ID"}
+//   } 
+//   else if (email) {
+//     return getAllUsers().then((userArr)=>{
+//       for(let i = 0; i < userArr.length; i++){
+//         if(userArr[i].email == email){
+//           console.log("here?");
+//           return {error:"this email is already registered"}
+//         }
+//       }
+//     })
 //   }
-//   if (!id) {
-//     return {error:"invalid id"}
-//   }
-//   return knex('users')
-//   .where('id', id)
-//   .update(userInfo)
-//   .returning(['firstName', 'last_name'])
-//   .then((user) => {
-//     return user[0]
-//   })
-// }
+                      // PATCH /user/:id 	Update a single user
+                      // const updateUser = (id, userInfo) => {
+                      //   const {userCode,name,capacity} = userInfo
+                      //   if(!userCode||!name||!capacity){
+                      //     return {error:"fields required"}
+                      //   }
+                      //   if (!id) {
+                      //     return {error:"invalid id"}
+                      //   }
+                      //   return knex('users')
+                      //   .where('id', id)
+                      //   .update(userInfo)
+                      //   .returning(['firstName', 'last_name'])
+                      //   .then((user) => {
+                      //     return user[0]
+                      //   })
+                      // }
 // // PATCH /user/:id 	ADMIN - deactivate a single user
 // const updateUser = (id, userInfo) => {
 //   const {userCode,name,capacity} = userInfo
@@ -115,7 +132,7 @@ const addNewUser = (body) => {
 //   .then((user) => {
 //     return user[0]
 //   })
- // }
+// }
 
 module.exports = {
   getAllUsers,

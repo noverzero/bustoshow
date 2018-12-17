@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const ticketInput = document.querySelectorAll('.ticket-input')
 
-    form.addEventListener('submit', (event) =>{
+    form.addEventListener('submit', (event) => {
       event.preventDefault()
       console.log(event)
       console.log(event.data)
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     })
 
-    function submit(){
+    function submit() {
 
     }
 

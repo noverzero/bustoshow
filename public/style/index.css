@@ -62,7 +62,7 @@
     z-index: 0;
   }
 
-  .modal-trigger, .modal-link, .signup-link{
+  .modal-trigger, .modal-link, .signup-link, .sign-out{
     background-color: rgba(0,0,0,0);
     border: solid;
     border-width: thin;
@@ -75,6 +75,11 @@
   }
 
   .modal-trigger:hover {
+    background-color: #ffffff;
+    color: #ff420f;
+  }
+
+  .sign-out:hover{
     background-color: #ffffff;
     color: #ff420f;
   }

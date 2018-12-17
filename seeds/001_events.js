@@ -1,9 +1,9 @@
-const muhArr = require("../eventAxiosCall.js")
+const axiosEventsArr = require("../eventAxiosCall.js")
 
 exports.seed = (knex) => {
   return knex('events').del()
   .then(() => {
-    return muhArr.PLEASE().then((data)=>{
+    return axiosEventsArr.PLEASE().then((data)=>{
       return knex('events').insert(data)
     })
   })

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {util, seed} = require('data-seed')
 const cors = require("cors")
+require("dotenv").config()
 
 const indexRouter = require('./mvc/routes/routes');
 
