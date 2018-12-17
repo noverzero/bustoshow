@@ -1,8 +1,10 @@
 const knex = require("../../knex.js")
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const loginKey = process.env.JWT_KEY
 const error = { error: "ssssss im an error snake" }
 const bcrypt = require('bcryptjs')
+
 
 // check if logged in
 const checkToken = (cookie) => {
@@ -34,9 +36,10 @@ const logInUser = (user) => {
     })
     .then((passwordMatch) => {
       if (passwordMatch) {
-        // delete currentUser.hshPwd //dont want to delete our database hashed passwords
+        delete currentUser.hshPwd //dont want to delete our database hashed passwords
         const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
-        res.cookie('token', token, { httpOnly: true })//how does res work when its undefined? //does the token carry over from this to the other function the way i've edited it?
+        return token
+        //does the token carry over from this to the other function the way i've edited it?
         //return currentUser
         console.log("SUCCESS!")//dont want to delete the hashed pass or return it to the user
       }

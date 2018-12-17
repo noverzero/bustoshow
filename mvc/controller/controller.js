@@ -4,7 +4,6 @@ const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
 
-
 //users
 const getUser = (req,res,next) => {
 //   let user = model.
@@ -13,6 +12,9 @@ const getUser = (req,res,next) => {
 
 const createUser = (req,res,next) => {
   return usersModel.addNewUser(req.body).then((userCreated) => {
+    
+    // const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
+    // res.cookie('token', token, { httpOnly: true })
     return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
   })
 }
@@ -31,9 +33,17 @@ const getToken = (req,res,next) => {
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
-    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.loginValidate
-  })
+    if (loginValidate.error) {
+      next({
+        status:400,message:"Invalid username or password"
+      })
+    } else {
+      console.log(loginValidate)
+      res.cookie('token', loginValidate, { httpOnly: true })
+      .redirect('/the page.html')
+    }
   // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
+  })
 }
 
 const logOut = (req,res,next) => {
