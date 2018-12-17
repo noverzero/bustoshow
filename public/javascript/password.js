@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
   createAccount.addEventListener('click', (event) => {
-    console.log("i hear a click on createAccount!")
-    axios.post("/routes/users", {firstName:'johnny', lastName:'Lawrence', email:'johny@cobrakai.com', isWaiverSigned:'yes', userType: 'standard', plainTextPassword: 'atleasteightcharacters'} ).then((response) => {
+    console.log("i hear a bleep on createAccount!")
+    axios.post("/routes/users", {firstName:newFirstName.value, lastName:newLastName.value, email:newEmail.value, isWaiverSigned:true, userType: 'standard', plainTextPassword: newPassword.value} ).then((response) => {
       console.log("dustins axios.post response.data:::", response.data)
+      //console.log("firstName", firstName)
     })
   })
 
