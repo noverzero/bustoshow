@@ -46,10 +46,8 @@ const signIn = (req,res,next) => {
 }
 
 const logOut = (req,res,next) => {
-  return tokenModel.logOutUser(req).then((tokenDeleted) => {
-    return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
-  })
-  // return res.tokenModel.logOutUser(req)
+  res.clearCookie('token')
+  res.end()
 }
 
 //events
