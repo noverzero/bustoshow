@@ -18,16 +18,15 @@ const checkToken = (cookie) => {
   })
 }
 
-// validate login 
+// validate login
 const logInUser = (user) => {
   let currentUser
-
   return knex('users')
     .where('email', user.email)
     .select('*')
     .first()
     .then((userExists) => {
-      if (userExists) {
+      if (userExists.email === user.email) {
         currentUser = userExists
         return bcrypt.compare(user.password, currentUser.hshPwd)
       }
@@ -40,7 +39,7 @@ const logInUser = (user) => {
         return token
       }
       return error
-    })
+    }).catch(err=>error)
 }
 
 module.exports = {

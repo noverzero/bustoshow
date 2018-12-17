@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     console.log(pw.value);
     console.log("click success");
     let loginObject = {email:em.value,password:pw.value}
-    axios.post("/routes/token",loginObject).then((e)=>{
-      console.log(e);
+    axios.post("/routes/token",loginObject).then((el)=>{
+      console.log(el);
       console.log("login success");
     })
   })
