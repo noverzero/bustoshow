@@ -5,8 +5,8 @@ const error = { error: "ssssss im an error snake" }
 const bcrypt = require('bcryptjs')
 
 // check if logged in
-const checkToken = (token) => {
-  jwt.verify(token, loginKey, (err) => {
+const checkToken = (cookie) => {
+  jwt.verify(cookie.token, loginKey, (err) => {
     if (err) {
       return false
     }
@@ -47,7 +47,6 @@ const logInUser = (user) => {
 const logOutUser = (cookie) => {
   console.log("logouthappen")
   return res.cookie('token', '', { httpOnly: true })//does this work? check controller. should we just write these in the controller so that the res and req are defined?
-  //.clearCookie()
 }
 
 module.exports = {
