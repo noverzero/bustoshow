@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content=process.env.GOOGLE_TOKEN>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="stylesheet" href="style/fonts.css">
+  <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="style/payment.css">
+  <!--[if lt IE 9]>
+    <script src="[PATH]/html5shiv.js"></script>
+    <![endif]-->
+
+  <title>Bus to Show</title>
+</head>
+
+
+<body>
+  <div class="content-wrapper">
+    <div class="layer">
+
+
+      <!-- Nav -->
+      <div class="navbar-fixed">
+        <nav class="z-depth-0 navbar">
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo center">
+              <img src="logos/BTS_LOGO-white-no-background-hi-res (1).png" alt="bts-logo" class="logo">
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down nav-links">
+              <li><a class="nav-link" href="index.html#calendar">CALENDAR</a></li>
+              <li><a class="nav-link" href="charters.html">CHARTERS</a></li>
+              <li><a class="nav-link" href="about.html">ABOUT</a></li>
+              <button data-target="modal1" class="login-btn btn modal-trigger">LOGIN</button>
+              <button data-target="modal2" class="signup-btn btn modal-trigger">SIGN UP</button>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <ul class="sidenav" id="mobile-demo">
+        <br>
+        <a href="index.html" class="brand-logo center">
+          <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo">
+        </a>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <li><a class="sidenav-close sidenav-link" href="#calendar">CALENDAR</a></li>
+        <li><a class="sidenav-close sidenav-link" href="charters.html">CHARTERS</a></li>
+        <li><a class="sidenav-close sidenav-link" href="about.html">ABOUT</a></li>
+        <div class="divider"></div>
+        <li><a class="sidenav-close sidenav-link modal-trigger" data-target="modal1">LOGIN</a></li>
+        <li><a class="sidenav-close sidenav-link signup-link" href="signup.html">SIGN UP</a></li>
+      </ul>
+
+      <!-- Modal 1 -->
+      <div id="modal1" class="modal login modal-fixed-footer">
+        <div class="modal-content center">
+          <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo modal-logo">
+
+          <div class="row center">
+
+            <div class="row container">
+              <form class="col s12">
+                <div class="row center">
+                  <div id="email" class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix1" type="email" class="validate" required>
+                    <label for="icon_prefix1">Email</label>
+                  </div>
+                  <div id="password" class="input-field col s12">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="icon_password" type="password" class="validate" required>
+                    <label for="icon_password">Password</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a id="sign-up" class="modal-close waves-effect btn-flat modal-link modal-trigger" data-target="modal2">Sign Up</a>
+          <a href="#!" id="logInButton" class="waves-effect btn-flat modal-link">Login</a>
+        </div>
+      </div>
+
+      <!-- Modal 2 -->
+      <div id="modal2" class="modal signup modal-fixed-footer">
+        <div class="modal-content center">
+          <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo modal-logo">
+          <div class="row container">
+            <form class="col s12">
+              <div class="row center">
+
+                <!-- Signup Fields -->
+                <div class="input-field col l6 s12">
+                  <i class="material-icons prefix">face</i>
+                  <input id="new-first-name" type="text" class="validate" required pattern=".{2,}">
+                  <label for="new-first-name">First Name</label>
+                  <span class="helper-text" data-error="Min. 2 character"></span>
+                </div>
+
+
+
+                <div class="input-field col l6 s12">
+                  <i class="material-icons prefix">face</i>
+                  <input id="new-last-name" type="text" class="validate" required pattern=".{2,}">
+                  <label for="new-last-name">Last Name</label>
+                  <span class="helper-text" data-error="Min. 2 character"></span>
+                </div>
+
+                <div class="input-field col l12 s12">
+                  <i class="material-icons prefix">send</i>
+                  <input id="new-email" type="email" class="validate" required>
+                  <label for="new-email">Email</label>
+                  <span class="helper-text" data-error="Enter valid email"></span>
+                </div>
+
+                <div class="input-field col l6 s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="new-password" type="password" class="validate" required>
+                  <label for="new-password">Password</label>
+                </div>
+
+                <div class="input-field col l6 s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="new-password-confirm" type="password" class="" required onkeyup='check()'>
+                  <label for="new-password-confirm">Confirm Password</label>
+                  <span id="password-confirm" class="helper-text" data-error="Password not match" data-success="Password Match"></span>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect btn-flat modal-link modal-close">Cancel</a>
+          <a id="create-new-account" class="waves-effect btn-flat modal-link">Create User</a>
+        </div>
+      </div>
+      <!-- End Nav -->
+
+
+
+      <div class="payment-body">
+
+
+
+        <div class="row container payment-field">
+          <div class="row payment-header"></div>
+          <br>
+          <div class="col s12 l6">
+            <div class="row ">
+              <div class="input-field col s6">
+                <input id="first_name_payment" type="text" class="validate">
+                <label class="active" for="first_name_payment">First Name</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 l6">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="last_name_payment" type="text" class="validate">
+                <label class="active" for="last_name_payment">Last Name</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 l12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="email_payment" type="email" class="validate">
+                <label class="active" for="email_payment">Email</label>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://js.stripe.com/v3/"></script>
+
+          <form action="/charge" method="post" id="payment-form">
+            <div class="form-row">
+              <label for="card-element">
+                Credit or debit card
+              </label>
+              <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+              </div>
+
+              <!-- Used to display form errors. -->
+              <div id="card-errors" role="alert"></div>
+            </div>
+
+            <div class="submit-payment-btn-field">
+              <button class="submit-payment-button">Submit Payment</button>
+            </div>
+          </form>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- End Content Wrapper -->
+
+
+
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="javascript/index.js"></script>
+  <script type="text/javascript" src="javascript/password.js"></script>
+  <script type="text/javascript" src="javascript/payment.js"></script>
+
+  <!-- Google OAuth Script -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+
+</html>
