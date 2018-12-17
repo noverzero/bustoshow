@@ -105,46 +105,46 @@
               <div class="row center">
 
                 <!-- Signup Fields -->
-                <div id="new-first-name" class="input-field col l6 s12">
+                <div class="input-field col l6 s12">
                   <i class="material-icons prefix">face</i>
-                  <input id="icon_prefix-1" type="text" class="validate" required pattern=".{3,}">
-                  <label for="icon_prefix-1">First Name</label>
+                  <input id="new-first-name" type="text" class="validate" required pattern=".{3,}">
+                  <label for="new-first-name">First Name</label>
                   <span class="helper-text" data-error="Min. 3 character"></span>
                 </div>
 
 
 
-                <div id="new-last-name" class="input-field col l6 s12">
+                <div class="input-field col l6 s12">
                   <i class="material-icons prefix">face</i>
-                  <input id="icon_prefix-2" type="text" class="validate" required pattern=".{3,}">
-                  <label for="icon_prefix-2">Last Name</label>
+                  <input id="new-last-name" type="text" class="validate" required pattern=".{3,}">
+                  <label for="new-last-name">Last Name</label>
                   <span class="helper-text" data-error="Min. 3 character"></span>
                 </div>
 
-                <div id="new-username" class="input-field col l12 s12">
+                <div class="input-field col l12 s12">
                   <i class="material-icons prefix">send</i>
-                  <input id="icon_prefix-3" type="email" class="validate" required>
-                  <label for="icon_prefix-3">Email</label>
+                  <input id="new-email" type="email" class="validate" required>
+                  <label for="new-email">Email</label>
                   <span class="helper-text" data-error="Enter valid email"></span>
                 </div>
 
-                <div id="new-username" class="input-field col l12 s12">
+                <!-- <div id="new-username" class="input-field col l12 s12">
                   <i class="material-icons prefix">account_circle</i>
                   <input id="icon_prefix-4" type="text" class="validate" required pattern=".{3,}" title="3 characters minimum">
                   <label for="icon_prefix-4">New Username</label>
                   <span class="helper-text" data-error="Min. 3 character">
+                </div> -->
+
+                <div class="input-field col l6 s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="new-password" type="password" class="validate" required>
+                  <label for="new-password">Password</label>
                 </div>
 
-                <div id="new-password" class="input-field col l6 s12">
+                <div  class="input-field col l6 s12">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon_prefix-5" type="password" class="validate" required>
-                  <label for="icon_prefix-5">Password</label>
-                </div>
-
-                <div id="new-password-confirm" class="input-field col l6 s12">
-                  <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon_prefix-6" type="password" class="" required onkeyup='check()'>
-                  <label for="icon_prefix-6">Confirm Password</label>
+                  <input id="new-password-confirm" type="password" class="" required onkeyup='check()'>
+                  <label for="new-password-confirm">Confirm Password</label>
                   <span id="password-confirm" class="helper-text" data-error="Password not match" data-success="Password Match"></span>
                 </div>
 

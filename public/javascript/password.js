@@ -2,10 +2,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
   console.log("It's Alive")
   M.AutoInit();
 
-  const password = document.querySelector('#icon_prefix-5')
-  const passConfirm = document.querySelector('#icon_prefix-6')
+  const password = document.querySelector('#new-password')
+  const passConfirm = document.querySelector('#new-password-confirm')
   const success = document.querySelector('#password-confirm')
-
+  const createAccount = document.querySelector('#create-new-account')
+  const newFirstName = document.querySelector('#new-first-name')
+  const newLastName = document.querySelector('#new-last-name')
+  const newEmail = document.querySelector('#new-email')
+  const newPassword = document.querySelector('#new-password')
 
 
   passConfirm.addEventListener('keyup', (event) => {
@@ -19,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
   })
 
-  const createAccount = document.querySelector('#create-new-account')
 
   createAccount.addEventListener('click', (event) => {
     console.log("i hear a click on createAccount!")
