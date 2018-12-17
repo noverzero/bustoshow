@@ -19,5 +19,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
   })
 
+  const createAccount = document.querySelector('#create-new-account')
+
+  createAccount.addEventListener('click', (event) => {
+    console.log("i hear a click on createAccount!")
+    axios.post("/routes/users", {firstName:'johnny', lastName:'Lawrence', email:'johny@cobrakai.com', isWaiverSigned:'yes', userType: 'standard', plainTextPassword: 'atleasteightcharacters'} ).then((response) => {
+      console.log("dustins axios.post response.data:::", response.data)
+    })
+  })
+
 
 }) // DOMContentLoaded;
