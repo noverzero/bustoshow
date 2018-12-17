@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", function(){ console.log("it's aliv
   const navWrapper = document.querySelector('.nav-wrapper')
 
   axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
-    let areWeLoggedIn = bool.data
-    let firstName = 'Daniel'
-    let lastName = 'Laruso'
+    let areWeLoggedIn = bool.data.boolean
+    console.log("logged in?", areWeLoggedIn)
+    let firstName = bool.data.obj.firstName
+    let lastName = bool.data.obj.lastName
 
     if(areWeLoggedIn){
       navLinks.removeChild(logInButton)
