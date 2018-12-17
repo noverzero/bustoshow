@@ -26,9 +26,7 @@ const updateUser = (req,res,next) => {
 
 //token
 const getToken = (req,res,next) => {
-  return tokenModel.checkToken(req.header.cookie).then((tokenChecked) => {
-    return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
-  })
+  return res.send(tokenModel.checkToken(req.cookies.token))
 }
 
 const signIn = (req,res,next) => {
