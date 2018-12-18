@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Creating Table/ Blocks
     const body = document.querySelector('body')
-    const calendar = document.querySelector('.calendar-section')
+    const calendar = document.querySelector('.my-calendar-section')
     const events = document.querySelector('#events-row')
     const form = document.createElement('form')
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         venueDiv.setAttribute('class', 'col l3 s3 row-element valign-wrapper')
         buttonDiv.setAttribute('class', 'col l2 s2 row-element valign-wrapper row-element-last')
         button.setAttribute('class', 'waves-effect waves-light btn event-btn z-depth-0 center valign-wrapper modal-trigger')
-        button.setAttribute('data-target', 'modal3')
+        button.setAttribute('data-target', 'modal4')
         button.setAttribute('id', 'event-button')
 
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         dayDiv.innerText = `${moment(event.date).format("ddd")}`
         headlineDiv.innerText = `${event.headliner}`
         venueDiv.innerText = `${event.venue}`
-        button.innerText = 'Book'
+        button.innerText = 'View'
         button.value = {
           date: `${moment(event.date).format("MM/DD/YY")}`,
           day: `${moment(event.date).format("ddd")}`,
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     createRows()
 
     // Book Function
-    const bookModal = document.querySelector('#modal3-content')
+    const bookModal = document.querySelector('#modal4-content')
 
     calendar.addEventListener('click', (event) => {
 
@@ -159,11 +159,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     })
-
-    function submit() {
-
-    }
-
 
     // Sort (Stretch)
 
