@@ -9,10 +9,15 @@
     background-image: url('/images/cropped_bts-future-selves-background-image.png');
     background-repeat: no-repeat;
     background-size: cover;
+    height: 20vh;
   }
 
   .hide{
     display: none;
+  }
+
+  #slide-out{
+    width: 50vw;
   }
 
   .content-wrapper {
