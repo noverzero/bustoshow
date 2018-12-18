@@ -3,7 +3,7 @@ const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
-const reservationsModel = require("../model/reservationsModel")
+const reservationsModel = require("../model/reservationsModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -170,6 +170,7 @@ const getOneReservation = (req,res,next) => {
   })
 }
 const createReservation = (req,res,next) => {
+  console.log(reservationsModel.createR(req.body))
   return reservationsModel.createR(req.body).then((createdReservation)=>{
     return createdReservation.error ? next({status:400,message:"Failed to create reservation"}) : res.status(201).send(createdReservation)
   })
