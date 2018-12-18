@@ -1,16 +1,21 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   console.log("It's Alive")
   M.AutoInit();
-  axios.all([axios.get("/routes/events"),axios.get("/routes/pickup")]).then(axios.spread((eventss,pickupss)=>{
-    console.log(eventss.data);
-    console.log(pickupss.data);
+
+  const reservationPostLocation = '/payment.html'
+
+  axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
     pickupArr = [...pickupss.data]
     eventsArr = [...eventss.data]
+
+    // console.log('eventsArr::', eventsArr)
 
     // Creating Table/ Blocks
     const body = document.querySelector('body')
     const calendar = document.querySelector('.calendar-section')
     const events = document.querySelector('#events-row')
+    const form = document.createElement('form')
+
 
 
     const createRows = () => {
@@ -75,16 +80,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       modalTitle.innerText = `${headliner} - ${day} (${date}) at ${venue}`
 
+
+      const modalFooter = document.createElement('div')
+      const aTag = document.createElement('a')
+      const bookSeat = document.createElement('button')
+      const watchlistBtn = document.createElement('button')
+
+      modalFooter.setAttribute('class', 'modal-footer col l12 s12')
+      aTag.setAttribute('class', 'modal-close waves-effect btn-flat')
+      bookSeat.setAttribute('class', 'btn waves-effect waves-light book-btn')
+      watchlistBtn.setAttribute('class', 'btn-flat waves-effect waves-light')
+      bookSeat.setAttribute('type', 'submit')
+      bookSeat.setAttribute('name', 'action')
+      bookSeat.setAttribute('onclick', 'submit()')
+      modalFooter.setAttribute('class', 'modal-footer')
+      form.setAttribute('action', reservationPostLocation)
+      // form.setAttribute('method', 'post')
+
+
+      bookSeat.innerText = "Book Seat"
+      watchlistBtn.innerText = "Add to Watchlist"
+      aTag.innerText = "Cancel"
+
+
       bookModal.appendChild(modalTitle)
+      bookModal.appendChild(form)
 
       // USE WITH Location
       pickupArr.forEach(option => {
-        let service = "Bueses To Show"
+        let service = "Bus To Show"
         let time = option.departureTime
         let location = option.locationName
-        let headliner = option.headliner
+        let optHeadliner = option.headliner
         let venue = option.venue
         let price = option.price
+        let optDate = option.date
         let saleEnd = "11:30PM Day of Show"
         let roundTrip = true
         let rTrip
@@ -93,26 +123,51 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         let row = document.createElement('div')
         let pickupOption = document.createElement('div')
+        let ticketQuantity = document.createElement('div')
+        let ticketSelect = document.createElement('input')
 
         row.setAttribute('class', 'row')
-        pickupOption.setAttribute('class', 'pickupOpt col s12 l12')
+        pickupOption.setAttribute('class', 'pickupOpt col s10 l11')
+        ticketQuantity.setAttribute('class', 'col s2 l1 ticket-quantity-field')
+        ticketSelect.setAttribute('type', 'number')
+        ticketSelect.setAttribute('class', 'input validate ticket-input')
+
+
 
         pickupOption.innerText = `${service} | ${time} ${location} to ${headliner} at ${venue} ${rTrip} \n Price: $${price} \n ${saleEnd}`
 
-        if(option.headliner === eventInfo.headliner && moment(option.date).format("MM/DD/YY") === date){
-          modalTitle.appendChild(row)
+        if (optHeadliner === headliner && moment(optDate).format("MM/DD/YY") === date) {
+          form.appendChild(row)
           row.appendChild(pickupOption)
+          row.appendChild(ticketQuantity)
+          ticketQuantity.appendChild(ticketSelect)
         }
       })
+
+      form.appendChild(modalFooter)
+      modalFooter.appendChild(aTag)
+      modalFooter.appendChild(watchlistBtn)
+      modalFooter.appendChild(bookSeat)
+
     })
+
 
     // Book Button
-    const bookBtn = document.querySelector('.book-btn')
 
-    bookBtn.addEventListener('click', (event) => {
-      console.log('Book button clicked from modal')
-      bookBtn.setAttribute('class', 'modal-close')
+    const ticketInput = document.querySelectorAll('.ticket-input')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      console.log(event)
+      console.log(event.data)
+
+
     })
+
+    function submit() {
+
+    }
+
 
     // Sort (Stretch)
 

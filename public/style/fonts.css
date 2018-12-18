@@ -5,11 +5,23 @@ h1{
 }
 
 h2{
-  font-family: 'Bree Serif', serif;
+  font-family: 'Raleway', serif;
 }
 
 h3{
   font-family: 'Raleway', sans-serif;
+}
+
+h4{
+  font-family: 'Raleway', sans-serif;
+}
+
+h5{
+  font-family: 'Raleway', sans-serif;
+}
+
+p{
+  font-size: 16px;
 }
 
 a{

@@ -4,17 +4,18 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {util, seed} = require('data-seed')
 const cors = require("cors")
-
+require("dotenv").config()
+// **remove env before deploy**
 const indexRouter = require('./mvc/routes/routes');
 
-const stripe = require("stripe")("sk_test_UpJeVveXeyBBKiiJUcE4SWm6");
-
-const charge = stripe.charges.create({
-  amount: 999,
-  currency: 'usd',
-  source: 'tok_visa',
-  receipt_email: 'jenny.rosen@example.com',
-});
+// const stripe = require("stripe")("sk_test_UpJeVveXeyBBKiiJUcE4SWm6");
+//
+// const charge = stripe.charges.create({
+//   amount: 999,
+//   currency: 'usd',
+//   source: 'tok_visa',
+//   receipt_email: 'jenny.rosen@example.com',
+// });
 
 const app = express();
 
@@ -45,6 +46,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   }
 // })
 app.use(cors())
+//I HATE STRIPE and its below VVVV
+app.post("/charge",(req,res,next)=>{
+  const stripe = require("stripe")("sk_test_UpJeVveXeyBBKiiJUcE4SWm6")
+  const token = req.body.stripeToken
+  const charge = stripe.charges.create({
+    amount: 1000000,
+    currency: 'usd',
+    description: 'Example charge',
+    source: token,
+  });
+})
 app.use('/routes', indexRouter);
 
 module.exports = app;

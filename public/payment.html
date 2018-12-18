@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content=process.env.GOOGLE_TOKEN>
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
   <link rel="stylesheet" href="style/fonts.css">
   <link rel="stylesheet" href="style/index.css">
-  <link rel="stylesheet" href="style/about.css">
+  <link rel="stylesheet" href="style/payment.css">
   <!--[if lt IE 9]>
     <script src="[PATH]/html5shiv.js"></script>
     <![endif]-->
@@ -26,6 +27,7 @@
 <body>
   <div class="content-wrapper">
     <div class="layer">
+
 
       <div class="fab-sidenav" id='fab-SideNav'>
 
@@ -175,12 +177,95 @@
 
 
 
+      <div class="payment-body">
+
+
+
+        <div class="row container payment-field">
+
+          <div class="row payment-header"></div>
+          <br>
+
+          <div class="row">
+            <div class="col l6">
+              <div class="col s12 l6">
+                <div class="row ">
+                  <div class="input-field col s6 l6">
+                    <input id="first_name_payment" type="text" class="validate">
+                    <label class="active" for="first_name_payment">First Name</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 l6">
+                <div class="row">
+                  <div class="input-field col s6 l6">
+                    <input id="last_name_payment" type="text" class="validate">
+                    <label class="active" for="last_name_payment">Last Name</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 l12">
+                <div class="row">
+                  <div class="input-field col s6 l6">
+                    <input id="email_payment" type="email" class="validate">
+                    <label class="active" for="email_payment">Email</label>
+                  </div>
+                </div>
+              </div>
+
+              <script src="https://js.stripe.com/v3/"></script>
+
+              <form action="/charge" method="post" id="payment-form">
+                <div class="form-row">
+                  <label for="card-element">
+                    Credit or debit card
+                  </label>
+                  <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                  </div>
+
+                  <!-- Used to display form errors. -->
+                  <div id="card-errors" role="alert"></div>
+                </div>
+
+                <div class="submit-payment-btn-field">
+                  <button class="submit-payment-button">Submit Payment</button>
+                  <a href="index.html" class="waves-effect waves-red btn-flat cancel-btn">Cancel</a>
+                </div>
+              </form>
+            </div>
+
+          <div class="col l6">
+            <div class="ticket-price-section">
+
+            </div>
+
+          </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+  <!-- End Content Wrapper -->
+
+
+
+
 
   <!-- Compiled and minified JavaScript -->
+  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="javascript/index.js"></script>
+  <script type="text/javascript" src="javascript/password.js"></script>
+  <script type="text/javascript" src="javascript/payment.js"></script>
+
+  <!-- Google OAuth Script -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

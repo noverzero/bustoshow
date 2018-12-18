@@ -1,0 +1,120 @@
+@media (max-width: 15000px) {
+  html, body{
+    background-color: #808080;
+  }
+
+  .content-wrapper{
+    background-image: none;
+    background-color: #808080;
+  }
+
+
+  .payment-field{
+    background-color: #f9f9f9;
+    margin-top: 5vh;
+    padding: 2%;
+    height: 84vh;
+  }
+
+  .submit-payment-button, .cancel-btn{
+    border: solid;
+    border-width: 1px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin-top: 2vh;
+    height: 50px;
+    width: 150px;
+    float: right;
+  }
+
+  .btn-flat{
+    font-style: inherit;
+    text-transform: inherit;
+    text-align: center;
+    font-size: inherit;
+    padding-top: 1%;
+  }
+
+  .submit-payment-button:hover{
+    background-color: #00c853;
+  }
+
+  .cancel-btn:hover{
+    background-color: #ff1744;
+  }
+
+  .submit-payment-button{
+    margin-left: 1%;
+  }
+
+  .redText{
+    color: red;
+  }
+
+  #first_name_payment, #last_name_payment{
+    width: 10vw;
+  }
+
+  #email_payment{
+    width: 26vw;
+  }
+
+  .ticket-price-section{
+    background-color: #fffec8;
+    padding: 2%;
+    margin-top: -1vh;
+  }
+
+  .tickets-ordered-header, .tax{
+    border-bottom: solid;
+    border-color: #000000;
+    border-width: 1.5px;
+    margin-top: 0;
+  }
+
+.subtotal{
+  border-bottom: solid;
+  border-color: #000000;
+  border-width: thin;
+}
+  /**
+   * The CSS shown here will not be introduced in the Quickstart guide, but shows
+   * how you can use CSS to style your Element's container.
+   */
+  .StripeElement {
+    background-color: white;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .payment-field{
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .nav-wrapper{
+    position: relative;
+  }
+
+
+}

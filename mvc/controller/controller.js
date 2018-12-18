@@ -3,7 +3,7 @@ const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
-
+const reservationsModel = require("../model/reservationsModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -13,34 +13,50 @@ const getUser = (req,res,next) => {
 
 const createUser = (req,res,next) => {
   return usersModel.addNewUser(req.body).then((userCreated) => {
+
+    // const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
+    // res.cookie('token', token, { httpOnly: true })
     return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
   })
 }
 
 const updateUser = (req,res,next) => {
-//   let userUpdated = model.
-//   return userUpdated.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(userUpdated)
+  return usersModel.editUserInfo(req.params.id, req.body).then((updatedUserInfo) => {
+    return updatedUserInfo.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updatedUserInfo)
+  })
 }
+
+const userPickupCheckinList = (req, res, next) => {
+  return usersModel.getUserPickupCheckInList(req.params.eventId, req.params.pickupId).then((userCheckinList) => {
+    return userCheckinList.error ? next({status:400,message:"Failed to List"}) : res.status(200).send(userCheckinList)
+  })
+}
+
+
 
 //token
 const getToken = (req,res,next) => {
-  return tokenModel.checkToken(req.header.cookie).then((tokenChecked) => {
-    return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
-  })
+  return res.send(tokenModel.checkToken(req.cookies.token))
 }
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
-    return loginValidate.error ? next({status:400,message:"Invalid username or password"}) : res.loginValidate
+    console.log("loginValidate.error:",loginValidate.error)
+    if (loginValidate.error) {
+      next({
+        status:400,message:"Invalid username or password"
+      })
+    } else {
+      console.log(loginValidate)
+      res.cookie('token', loginValidate, { httpOnly: true })
+      .redirect('/')
+    }
   })
-  // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
 }
 
 const logOut = (req,res,next) => {
-  return tokenModel.logOutUser(req).then((tokenDeleted) => {
-    return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
-  })
-  // return res.tokenModel.logOutUser(req)
+  res.clearCookie('token')
+  res.end()
 }
 
 //events
@@ -150,11 +166,44 @@ const deleteBus = (req,res,next) => {
   })
 }
 
+//reservations controllers boiiiiii
+const getAllReservations = (req,res,next) => {
+  return reservationsModel.getAllR().then((allReservations)=>{
+    return allReservations.error ? next({status:404,message:"not found"}) : res.status(200).send(allReservations)
+  })
+}
+const getOneReservation = (req,res,next) => {
+  return reservationsModel.getOneR(req.params.id).then((oneReservation)=>{
+    return oneReservation.error ? next({status:404,message:"not found"}) : res.status(200).send(oneReservation)
+  })
+}
+const createReservation = (req,res,next) => {
+  console.log(reservationsModel.createR(req.body))
+  return reservationsModel.createR(req.body).then((createdReservation)=>{
+    return createdReservation.error ? next({status:400,message:"Failed to create reservation"}) : res.status(201).send(createdReservation)
+  })
+}
+const updateReservation = (req,res,next) => {
+  return reservationsModel.updateR(req.params.id,req.body).then((updatedReservation)=>{
+    return updatedReservation.error ? next({status:400,message:"Failed to update reservation"}) : res.status(202).send(updatedReservation)
+  })
+}
+const deleteReservation = (req,res,next) => {
+  return reservationsModel.deleteR(req.params.id).then((deletedReservation)=>{
+    return deletedReservation.error ? next({status:404,message:"Failded to delete reservation"}) : res.status(204).send(deletedReservation)
+  })
+}
+const getAllReservationsByUser = (req,res,next) => {
+  return reservationsModel.getAllByUser(req.params.id).then((ress4user)=>{
+    return ress4user.error ? next({status:404,message:"not found"}) : res.status(200).send(ress4user)
+  })
+}
 
 module.exports = {
   getUser,
   createUser,
   updateUser,
+  userPickupCheckinList,
   getToken,
   signIn,
   logOut,
@@ -175,5 +224,11 @@ module.exports = {
   getOneBus,
   createBus,
   updateBus,
-  deleteBus
+  deleteBus,
+  getAllReservations,
+  getOneReservation,
+  createReservation,
+  updateReservation,
+  deleteReservation,
+  getAllReservationsByUser
 }

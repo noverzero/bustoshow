@@ -1,3 +1,4 @@
+const error = { error: "SNAKES ON A BUS" }
 //buses Model
 //buses THESE ARE THE buses ROUTES for reference
           //X router.get("/buses", controller.getAllBuses)//get all busses
@@ -32,6 +33,7 @@ const getOneBus = (id) => {
   .then((bus) => {
     return bus
   })
+  .catch( err => error )
 }
 
 // POST New Bus
@@ -64,6 +66,7 @@ const updateBus = (id, busInfo) => {
   .then((bus) => {
     return bus[0]
   })
+  .catch( err => error )
 }
 // Delete a Bus  (superadmin)
 const deleteBus = (id) => {
@@ -75,6 +78,7 @@ const deleteBus = (id) => {
   .del('*')
   .returning(['busCode', 'name', 'capacity'])
   .then((data) => data)
+  .catch( err => error )
 }
 
 module.exports = {getAllBuses,getOneBus,addNewBus,updateBus,deleteBus}

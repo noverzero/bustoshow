@@ -16,7 +16,6 @@ const getAllLocations = (eventId) => {
   .then((data) => data)
 }
 
-
 // Get One pickup location -- this response displays with price and departure time on reservation page.
 
 const getOneLocation = (locationId, eventId) => {
