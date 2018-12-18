@@ -3,6 +3,14 @@
     background-color: #ff420f;
   }
 
+
+  /* Background for FAB/Sidenav only */
+  .background{
+    background-image: url('/images/cropped_bts-future-selves-background-image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   .hide{
     display: none;
   }
@@ -16,6 +24,17 @@
     -o-background-size: cover;
     background-size: cover;
   }
+
+  i.fab-button{
+    color: #ff420f;
+    background-color: #ffffff;
+  }
+
+  i.fab-button:hover{
+    color: #ffffff;
+    background-color: #708090;
+  }
+
 
   .layer {
     background: rgba(0, 0, 0, 0.1);
@@ -113,6 +132,21 @@
     color: #ffffff;
   }
 
+
+
+  .welcome-tag{
+    margin-top: 2vh;
+  }
+
+  .welcome-tag:hover{
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  /* .welcome-tag:hover{
+  background-color: #ffffff;
+  color: #ff420f;
+  } */
+
   .chevron {
     margin-top: vh;
   }
@@ -125,14 +159,6 @@
     animation: hover-me .5s infinite ease-in-out alternate;
   }
 
-  .welcome-tag{
-    margin-top: 2vh;
-  }
-
-  .welcome-tag:hover{
-    background-color: #ffffff;
-    color: #ff420f;
-  }
 
   @keyframes hover-me {
     100% {

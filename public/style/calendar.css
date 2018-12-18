@@ -6,7 +6,7 @@
   }
 
   .my-calendar-section{
-    background-color: #ff420f;
+  background-color: #ff420f;
   }
 
   .event-header {
@@ -34,7 +34,7 @@
   }
 
   .row-header {
-    background-color: #000000;
+    background-color: 	#708090;
     color: #ffffff;
     height: 7vh;
     text-align: center;

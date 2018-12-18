@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       uList.setAttribute('id', 'nav-mobile')
       uList.setAttribute('class', 'left hide-on-med-and-down')
-      anchor.setAttribute('href', 'myevents.html')
       anchor.setAttribute('class', 'welcome-tag')
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
       sidenavLogin.setAttribute('href', 'myevents.html')
@@ -57,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
       sidenavLogin.innerText = 'My Events'
-      sideNavName.innerText = firstName + ' ' + lastName + '\n'
-      sideNavEmail.innerText = userEmail
+      // sideNavName.innerText = firstName + ' ' + lastName + '\n'
+      // sideNavEmail.innerText = userEmail
 
 
       navWrapper.appendChild(uList)
