@@ -121,6 +121,15 @@
     animation: hover-me .5s infinite ease-in-out alternate;
   }
 
+  .welcome-tag{
+    margin-top: 2vh;
+  }
+
+  .welcome-tag:hover{
+    background-color: #ffffff;
+    color: #ff420f;
+  }
+
   @keyframes hover-me {
     100% {
       transform: translate3d(0, 25px, 0);

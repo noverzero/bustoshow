@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sidenavLogin.removeAttribute('class', 'modal-trigger')
 
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
+      sidenavLogin.setAttribute('href', 'myevents.html')
 
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
@@ -33,10 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let uList = document.createElement('ul')
       let list = document.createElement('li')
       let anchor = document.createElement('a')
+
       uList.setAttribute('id', 'nav-mobile')
       uList.setAttribute('class', 'left hide-on-med-and-down')
-      anchor.setAttribute('href', '#!')
-      anchor.innerText = `signed in as: ${firstName} ${lastName}`
+      anchor.setAttribute('href', 'myevents.html')
+      anchor.setAttribute('class', 'welcome-tag')
+
+      anchor.innerText = `Welcome, ${firstName} ${lastName}!`
 
 
       navWrapper.appendChild(uList)
