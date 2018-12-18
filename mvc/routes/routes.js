@@ -37,6 +37,9 @@ router.patch("/buses/:id", controller.updateBus)//update a bus
 router.delete("/buses/:id", controller.deleteBus)//delete a bus
 
 //reservations
-router.get("/reservations/")
-
+router.get("/reservations")
+router.get("/reservations/:id")
+router.post("/reservations")
+router.patch("/reservations/:id")
+router.delete("/reservations/:id")
 module.exports = router
