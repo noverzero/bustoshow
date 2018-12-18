@@ -26,6 +26,14 @@ const updateUser = (req,res,next) => {
   })
 }
 
+const userPickupCheckinList = (req, res, next) => {
+  return usersModel.getUserPickupCheckInList(req.query.eventId, req.query.pickupId).then((userCheckinList) => {
+    return userCheckinList.error ? next({status:400,message:"Failed to List"}) : res.status(200).send(userCheckinList)
+  })
+}
+
+
+
 //token
 const getToken = (req,res,next) => {
   return res.send(tokenModel.checkToken(req.cookies.token))
@@ -194,6 +202,7 @@ module.exports = {
   getUser,
   createUser,
   updateUser,
+  userPickupCheckinList,
   getToken,
   signIn,
   logOut,
