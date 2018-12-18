@@ -1,6 +1,8 @@
 const knex = require("../../knex.js")
 const getAllR = () => {
-  // return knex("reservations").select()
+  return knex("events").select("date","headliner","startTime")
+  .innerJoin("trips","events.id","trips.eventId").select("*")
+  .innerJoin("reservations","reservations.tripId","trips.id").select("*")
 }
 const getOneR = () => {
 
