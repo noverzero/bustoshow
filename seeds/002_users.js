@@ -18,7 +18,7 @@ exports.seed = (knex) => {
   return knex('users').del()
     .then(() => {
       // Inserts seed entries
-      return knex('users').insert(generateUsersSeeds(10))
+      return knex('users').insert(generateUsersSeeds(100))
     })
     .then(() => {
       return knex.raw("SELECT setval('users_id_seq', (SELECT MAX(id) FROM users))")

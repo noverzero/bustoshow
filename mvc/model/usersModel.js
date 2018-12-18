@@ -92,23 +92,21 @@ const editUserInfo = (userId, updatedInfo) => {
 }
 
 const getUserPickupCheckInList = (eventId, pickupId) => {
-  console.log("eventId:",eventId)
-  console.log("pickupId:",pickupId)
   if(!pickupId || !eventId) {
     return {error: "NOTTA CHANCE"}
   } 
   return knex("trips")
-      .select("id","event_id","pickupLocationId")
-    .innerJoin("events","trips.event_id","events.id")
-      .select("venue","date","headliner")
-      .where("event.id",eventId)
-    .innerJoin("pickupLocations","trips.pickupLocationId","pickupLocations.id")
+      .select("trips.id","eventId","pickupLocationId")
+    .innerJoin("events","trips.eventId","events.id")
+      .select("*")//"venue","date","headliner"
+      .where("events.id",eventId)
+    .innerJoin("pickup_locations","trips.pickupLocationId","pickup_locations.id")
       .select("*")
-      .where("pickupLocations.id",pickupId)
+      .where("pickup_locations.id",pickupId)
     .innerJoin("reservations","trips.id","reservations.tripId")
       .select("*")
-    .innerJoin("users","reservations.user_id","users.id")
-      .select("firstName","lastName")
+    .innerJoin("users","reservations.userId","users.id")
+      .select("*")//"firstName","lastName"
     .then((userPickupListInfo) => {
       return userPickupListInfo.reduce((userCheckinList, userCheckinListObject) => {
         const {firstName,lastName,locationName,headliner} = userCheckinListObject

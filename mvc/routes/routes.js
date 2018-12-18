@@ -13,7 +13,7 @@ router.post("/token", controller.signIn)// sign in
 router.delete("/token", controller.logOut)// log out
 
 //events
-router.get("/events/:id/pickup/:id", controller.userPickupCheckinList)//get all users for one pickup location for one event
+router.get("/events/:eventId/pickup/:pickupId", controller.userPickupCheckinList)//get all users for one pickup location for one event
 router.post("/events", controller.createEvents)//stretch add events
 router.get("/events", controller.getAllEvents)// get all events
 router.get("/events/:id", controller.getOneEvent)// get an event
@@ -46,5 +46,5 @@ router.delete("/reservations/:id",controller.deleteReservation)//delete reservat
 router.get("/reservations/user/:id",controller.getAllReservationsByUser)//get all reservations for a single user when a user has multiple
 
 //payments
-router.post("/charge", controller.ccPayment)//accept CC token, 
+// router.post("/charge", controller.ccPayment)//accept CC token, 
 module.exports = router

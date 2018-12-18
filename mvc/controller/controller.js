@@ -27,7 +27,7 @@ const updateUser = (req,res,next) => {
 }
 
 const userPickupCheckinList = (req, res, next) => {
-  return usersModel.getUserPickupCheckInList(req.query.eventId, req.query.pickupId).then((userCheckinList) => {
+  return usersModel.getUserPickupCheckInList(req.params.eventId, req.params.pickupId).then((userCheckinList) => {
     return userCheckinList.error ? next({status:400,message:"Failed to List"}) : res.status(200).send(userCheckinList)
   })
 }
