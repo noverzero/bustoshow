@@ -84,6 +84,14 @@
     color: #ff420f;
   }
 
+  .test{
+    color: #d000ff;
+  }
+
+  .hide{
+    display: none;
+  }
+
   #modal2{
     width: 75vw;
   }

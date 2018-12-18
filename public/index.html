@@ -28,6 +28,38 @@
   <div class="content-wrapper">
     <div class="layer">
 
+      <!-- FAB/ SideNav -->
+      <ul id="slide-out" class="sidenav">
+        <li>
+          <div id="user-info" class="user-view">
+            <div class="background green">
+            </div>
+            <a href="#user"><img class=""></a>
+            <a href="#name"><span class="white-text name">[NAME]</span></a>
+            <a href="#email"><span class="white-text email">[EMAIL]</span></a>
+          </div>
+        </li>
+        <li><a id="reservation-section" class="subheader">My Upcoming Reservations</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a id="reservations-list"class="side-li waves-effect" target="_blank" href="#"></a></li>
+        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
+        <br>
+        <li><a class="subheader">My Wishlist</a></li>
+        <li>
+          <div class="divider"></div>
+        </li>
+        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
+        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
+
+
+
+      </ul>
+
+      <div id="account-button" class="fixed-action-btn">
+        <a href="#" data-target="slide-out" class="btn-floating waves-effect btn-large sidenav-trigger green"><i class="material-icons fab-button">account_box</i></a>
+      </div>
 
       <!-- Nav -->
       <div class="navbar-fixed">
@@ -92,7 +124,7 @@
 
         <div class="modal-footer">
           <a id="sign-up" class="modal-close waves-effect btn-flat modal-link modal-trigger" data-target="modal2">Sign Up</a>
-          <a href="#!" id = "logInButton" class="waves-effect btn-flat modal-link">Login</a>
+          <a href="#!" id="logInButton" class="waves-effect btn-flat modal-link">Login</a>
         </div>
       </div>
 
@@ -141,7 +173,7 @@
                   <label for="new-password">Password</label>
                 </div>
 
-                <div  class="input-field col l6 s12">
+                <div class="input-field col l6 s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="new-password-confirm" type="password" class="" required onkeyup='check()'>
                   <label for="new-password-confirm">Confirm Password</label>
