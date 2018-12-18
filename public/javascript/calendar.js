@@ -84,10 +84,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const modalFooter = document.createElement('div')
       const aTag = document.createElement('a')
       const bookSeat = document.createElement('button')
+      const watchlistBtn = document.createElement('button')
 
       modalFooter.setAttribute('class', 'modal-footer col l12 s12')
       aTag.setAttribute('class', 'modal-close waves-effect btn-flat')
       bookSeat.setAttribute('class', 'btn waves-effect waves-light book-btn')
+      watchlistBtn.setAttribute('class', 'btn-flat waves-effect waves-light')
       bookSeat.setAttribute('type', 'submit')
       bookSeat.setAttribute('name', 'action')
       bookSeat.setAttribute('onclick', 'submit()')
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
       bookSeat.innerText = "Book Seat"
+      watchlistBtn.innerText = "Add to Watchlist"
       aTag.innerText = "Cancel"
 
 
@@ -143,6 +146,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       form.appendChild(modalFooter)
       modalFooter.appendChild(aTag)
+      modalFooter.appendChild(watchlistBtn)
       modalFooter.appendChild(bookSeat)
 
     })

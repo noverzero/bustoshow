@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const watchlistField = document.querySelector('.watchlist')
 
 
+  // Add call to user's favorited
   const userUpcomingEvents = []
-  const userWatchlist = ['hello']
+  const userWatchlist = []
 
 
   axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         watchlistATag.innerText = 'No watchlist events!'
 
-        watchlistEventField.appendChild(watchlistLi)
+        upcomingEventField.appendChild(watchlistLi)
         watchlistLi.appendChild(watchlistATag)
       }
 
