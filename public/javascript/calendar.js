@@ -2,11 +2,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   console.log("It's Alive")
   M.AutoInit();
 
-  // Needed - If logged in and if favorited then {
+  const reservationPostLocation = '/payment.html'
 
   axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
     pickupArr = [...pickupss.data]
     eventsArr = [...eventss.data]
+
+    // console.log('eventsArr::', eventsArr)
 
     // Creating Table/ Blocks
     const body = document.querySelector('body')
@@ -81,18 +83,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       const modalFooter = document.createElement('div')
       const aTag = document.createElement('a')
-      const makeChange = document.createElement('button')
+      const bookSeat = document.createElement('button')
 
       modalFooter.setAttribute('class', 'modal-footer col l12 s12')
       aTag.setAttribute('class', 'modal-close waves-effect btn-flat')
-      makeChange.setAttribute('class', 'btn waves-effect waves-light book-btn')
-      makeChange.setAttribute('type', 'submit')
-      makeChange.setAttribute('name', 'action')
-      makeChange.setAttribute('onclick', 'submit()')
+      bookSeat.setAttribute('class', 'btn waves-effect waves-light book-btn')
+      bookSeat.setAttribute('type', 'submit')
+      bookSeat.setAttribute('name', 'action')
+      bookSeat.setAttribute('onclick', 'submit()')
       modalFooter.setAttribute('class', 'modal-footer')
+      form.setAttribute('action', reservationPostLocation)
+      // form.setAttribute('method', 'post')
 
 
-      makeChange.innerText = "Make Change"
+      bookSeat.innerText = "Book Seat"
       aTag.innerText = "Cancel"
 
 
@@ -139,9 +143,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       form.appendChild(modalFooter)
       modalFooter.appendChild(aTag)
-      modalFooter.appendChild(makeChange)
+      modalFooter.appendChild(bookSeat)
 
     })
+
+
+    // Book Button
+
+    const ticketInput = document.querySelectorAll('.ticket-input')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      console.log(event)
+      console.log(event.data)
+
+
+    })
+
+    function submit() {
+
+    }
 
 
     // Sort (Stretch)

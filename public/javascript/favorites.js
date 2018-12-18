@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidenavSignup = document.querySelector('.signup-link ')
   const navLinks = document.querySelector('.nav-links')
   const navWrapper = document.querySelector('.nav-wrapper')
+  const fabBtn = document.querySelector('.fixed-action-btn')
 
   axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
     let areWeLoggedIn = bool.data.boolean
@@ -19,12 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if(areWeLoggedIn){
       navLinks.removeChild(logInButton)
 
+      fabBtn.removeAttribute('class', 'hide')
       signInButton.removeAttribute('class', 'modal-trigger')
       sidenavSignup.removeAttribute('class', 'modal-trigger')
       sidenavLogin.removeAttribute('class', 'modal-trigger')
 
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
       sidenavLogin.setAttribute('href', 'myevents.html')
+      fabBtn.setAttribute('class', 'fixed-action-btn')
+
 
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
