@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sideNavEmail = document.querySelector('.sidenav-email')
   const upcomingEventField = document.querySelector('.sidenav')
   const watchlistField = document.querySelector('.watchlist')
+  const sideNavLogin = document.querySelector('#sidenav-login-btn')
+  const sideNav = document.querySelector('#mobile-demo')
 
 
   // Add call to user's favorited
@@ -40,22 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const anchor = document.createElement('a')
 
       navLinks.removeChild(logInButton)
+      sideNav.removeChild(sideNavLogin)
 
       signInButton.removeAttribute('class', 'modal-trigger')
       sidenavSignup.removeAttribute('class', 'modal-trigger')
-      sidenavLogin.removeAttribute('class', 'modal-trigger')
+      sidenavLogin.removeAttribute('class')
 
       uList.setAttribute('id', 'nav-mobile')
       uList.setAttribute('class', 'left hide-on-med-and-down')
       anchor.setAttribute('class', 'welcome-tag')
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
-      sidenavLogin.setAttribute('href', 'myevents.html')
 
 
       anchor.innerText = `Welcome, ${firstName} ${lastName}!`
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
-      sidenavLogin.innerText = 'My Events'
+      sidenavLogin.innerText = ''
       // sideNavName.innerText = firstName + ' ' + lastName + '\n'
       // sideNavEmail.innerText = userEmail
 
