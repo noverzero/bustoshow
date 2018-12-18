@@ -10,7 +10,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
     date: '12/12/3021',
     venue: 'Moon Base',
     pickupLoc: 'Cheba Hut on the Hill',
-    pickupTime: '5:00pm'
+    pickupTime: '5:00pm',
+    ticketQuantity: '2',
+    price: '25.00',
+    fee: '2.75'
   }
 
   // To be replaced with user data from db
@@ -23,28 +26,87 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   const paymentField = document.querySelector('.payment-header')
-
-  const paymentHeader = document.createElement('h4')
-  const pickupHeader = document.createElement('h4')
-
-  pickupHeader.setAttribute('class', 'redText')
-
-
-  paymentHeader.innerText = `${bookingBtn.headliner} - ${bookingBtn.day} (${bookingBtn.date}) at ${bookingBtn.venue}`
-
-  pickupHeader.innerText = `Pickup: ${bookingBtn.pickupLoc} - ${bookingBtn.pickupTime}`
-
-  paymentField.appendChild(paymentHeader)
-  paymentField.appendChild(pickupHeader)
-
+  const ticketField = document.querySelector('.ticket-price-section')
   const firstNameField = document.querySelector('#first_name_payment')
   const lastNameField = document.querySelector('#last_name_payment')
   const emailField = document.querySelector('#email_payment')
+
+  const paymentHeader = document.createElement('h4')
+  const pickupHeader = document.createElement('h4')
+  const ticketOrderHeader = document.createElement('h5')
+  const ticketsOrdered = document.createElement('p')
+  const ticketFee = document.createElement('p')
+  const subtotal = document.createElement('p')
+  const tax = document.createElement('p')
+  const total = document.createElement('p')
 
 
   const userFirstName = userPaymentInfo.first
   const userLastName = userPaymentInfo.last
   const userEmail = userPaymentInfo.email
+
+
+
+  pickupHeader.setAttribute('class', 'redText')
+  ticketOrderHeader.setAttribute('class', 'tickets-ordered-header')
+  subtotal.setAttribute('class', 'subtotal')
+  tax.setAttribute('class', 'tax')
+
+
+
+  paymentHeader.innerText = `${bookingBtn.headliner} - ${bookingBtn.day} (${bookingBtn.date}) at ${bookingBtn.venue}`
+
+  pickupHeader.innerText = `Pickup: ${bookingBtn.pickupLoc} - ${bookingBtn.pickupTime}`
+  ticketOrderHeader.innerText = 'Order Total'
+  ticketsOrdered.innerText = `Tickets ordered: ${bookingBtn.ticketQuantity} tickets @ $${bookingBtn.price}`
+  ticketFee.innerText = `Fee per ticket: $${bookingBtn.fee}`
+  subtotal.innerText = `Subtotal: $${subtotalCalc()}`
+  tax.innerText = `Tax: $${taxCalc()}`
+  total.innerText = `Total: $${totalCalc()}`
+
+
+
+  paymentField.appendChild(paymentHeader)
+  paymentField.appendChild(pickupHeader)
+  ticketField.appendChild(ticketOrderHeader)
+  ticketField.appendChild(ticketsOrdered)
+  ticketField.appendChild(ticketFee)
+  ticketField.appendChild(subtotal)
+  ticketField.appendChild(tax)
+  ticketField.appendChild(total)
+
+
+
+  function subtotalCalc(){
+    let cQuantity = Number(bookingBtn.ticketQuantity)
+    let cFee = Number(bookingBtn.fee)
+    let cPrice = Number(bookingBtn.price)
+
+    let subT = ((cPrice + cFee) * cQuantity)
+
+    return subT.toFixed(2)
+  }
+
+  function taxCalc(){
+    let sub = subtotalCalc()
+    let taxRate = .08845
+    let tax = sub * taxRate
+
+    return tax.toFixed(2)
+  }
+
+  function totalCalc(){
+    let sub = subtotalCalc()
+    let taxRate = .08845
+    let tax = sub * taxRate
+
+    let total = (Number(tax) + Number(sub))
+
+
+    return total.toFixed(2)
+  }
+
+
 
 
   let loggedIn = true
@@ -57,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     M.updateTextFields();
   }
+
+
 
 
   // Create a Stripe client.

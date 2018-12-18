@@ -84,10 +84,6 @@
     color: #ff420f;
   }
 
-  .test{
-    color: #d000ff;
-  }
-
   .hide{
     display: none;
   }
@@ -123,6 +119,15 @@
     width: 2.5em;
     height: 2.5em;
     animation: hover-me .5s infinite ease-in-out alternate;
+  }
+
+  .welcome-tag{
+    margin-top: 2vh;
+  }
+
+  .welcome-tag:hover{
+    background-color: #ffffff;
+    color: #ff420f;
   }
 
   @keyframes hover-me {
