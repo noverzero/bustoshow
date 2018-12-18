@@ -16,11 +16,31 @@
     height: 84vh;
   }
 
-  .submit-payment-button, .cancel-button{
+  .submit-payment-button, .cancel-btn{
+    border: solid;
+    border-width: 1px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
     margin-top: 2vh;
     height: 50px;
     width: 150px;
     float: right;
+  }
+
+  .btn-flat{
+    font-style: inherit;
+    text-transform: inherit;
+    text-align: center;
+    font-size: inherit;
+    padding-top: 1%;
+  }
+
+  .submit-payment-button:hover{
+    background-color: #00c853;
+  }
+
+  .cancel-btn:hover{
+    background-color: #ff1744;
   }
 
   .submit-payment-button{
@@ -31,6 +51,32 @@
     color: red;
   }
 
+  #first_name_payment, #last_name_payment{
+    width: 10vw;
+  }
+
+  #email_payment{
+    width: 26vw;
+  }
+
+  .ticket-price-section{
+    background-color: #fffec8;
+    padding: 2%;
+    margin-top: -1vh;
+  }
+
+  .tickets-ordered-header, .tax{
+    border-bottom: solid;
+    border-color: #000000;
+    border-width: 1.5px;
+    margin-top: 0;
+  }
+
+.subtotal{
+  border-bottom: solid;
+  border-color: #000000;
+  border-width: thin;
+}
   /**
    * The CSS shown here will not be introduced in the Quickstart guide, but shows
    * how you can use CSS to style your Element's container.
@@ -60,7 +106,7 @@
 
 }
 
-@media (max-width: 15000px) {
+@media (max-width: 580px) {
   .payment-field{
     height: 100vh;
     width: 100vw;
@@ -70,7 +116,5 @@
     position: relative;
   }
 
-  #email_payment{
-    width: 80vw;
-  }
+
 }
