@@ -29,9 +29,9 @@
     <div class="layer">
 
       <div class="fab-sidenav" id='fab-SideNav'>
+
         <!-- FAB/ SideNav -->
         <ul id="slide-out" class="sidenav">
-
           <li>
             <div id="user-info" class="user-view">
               <div class="background">
@@ -41,19 +41,12 @@
               <a href="#email"><span class="white-text sidenav-email"></span></a>
             </div>
           </li>
-
-          <li>
-            <a class="header">My Account</a>
-          </li>
+          <li><a class="header">My Account</a></li>
           <br>
-
+          <li><a id="reservation-section" class="subheader">My Upcoming Reservations</a></li>
           <li>
-            <a id="reservation-section" class="subheader">My Upcoming Reservations</a>
+            <div class="divider"></div>
           </li>
-          <li><div class="divider"></div></li>
-
-
-
         </ul>
 
         <div id="account-button" class="fixed-action-btn">
@@ -92,7 +85,7 @@
         <li><a class="sidenav-close sidenav-link" href="charters.html">CHARTERS</a></li>
         <li><a class="sidenav-close sidenav-link" href="about.html">ABOUT</a></li>
         <div class="divider"></div>
-        <li><a class="sidenav-close sidenav-link login-link modal-trigger" data-target="modal1">LOGIN</a></li>
+        <li id='sidenav-login-btn'><a class="sidenav-close sidenav-link login-link modal-trigger" data-target="modal1">LOGIN</a></li>
         <li><a class="sidenav-close sidenav-link signup-link modal-trigger" data-target="modal2">SIGN UP</a></li>
       </ul>
 
@@ -100,9 +93,7 @@
       <div id="modal1" class="modal login modal-fixed-footer">
         <div class="modal-content center">
           <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo modal-logo">
-
           <div class="row center">
-
             <div class="row container">
               <form class="col s12">
                 <div class="row center">
@@ -128,7 +119,7 @@
         </div>
       </div>
 
-      <!-- Modal 2 -->
+      <!-- Sign Up - Modal 2 -->
       <div id="modal2" class="modal signup modal-fixed-footer">
         <div class="modal-content center">
           <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo modal-logo">
@@ -143,8 +134,6 @@
                   <label for="new-first-name">First Name</label>
                   <span class="helper-text" data-error="Min. 2 character"></span>
                 </div>
-
-
 
                 <div class="input-field col l6 s12">
                   <i class="material-icons prefix">face</i>
@@ -177,6 +166,7 @@
             </form>
           </div>
         </div>
+
         <div class="modal-footer">
           <a class="waves-effect btn-flat modal-link modal-close">Cancel</a>
           <a id="create-new-account" class="waves-effect btn-flat modal-link">Create User</a>
@@ -184,10 +174,14 @@
       </div>
       <!-- End Nav -->
 
+
+      <!-- Main Header -->
       <div class="row container center">
         <div class="col s12 l12 main-header center">
           <h1>BUSTOSHOW.ORG</h1>
         </div>
+
+        <!-- Ride Btn -->
         <div class="ride-btn-container">
           <a class="ride-btn waves-effect waves-light btn-large">
             <h3 class="btn-text">Ride With Us</h3>
@@ -197,6 +191,7 @@
 
       <div class="row center">
         <div class="col s12 l12 center">
+
           <!-- Chevron -->
           <div class="chevron">
             <svg viewBox="0 0 68 33" class="chevron-down">
@@ -211,7 +206,7 @@
   <!-- End Content Wrapper -->
 
 
-
+  <!-- Calendar Section -->
   <div class="calendar-section" id="calendar">
     <div class="row container cal-body-section">
       <div class="col l12 s12 make-top">
