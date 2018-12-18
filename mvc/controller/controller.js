@@ -184,6 +184,11 @@ const deleteReservation = (req,res,next) => {
     return deletedReservation.error ? next({status:404,message:"Failded to delete reservation"}) : res.status(204).send(deletedReservation)
   })
 }
+const getAllReservationsByUser = (req,res,next) => {
+  return reservationsModel.getAllByUser(req.params.id).then((ress4user)=>{
+    return ress4user.error ? next({status:404,message:"not found"}) : res.status(200).send(ress4user)
+  })
+}
 
 module.exports = {
   getUser,
@@ -214,5 +219,6 @@ module.exports = {
   getOneReservation,
   createReservation,
   updateReservation,
-  deleteReservation
+  deleteReservation,
+  getAllReservationsByUser
 }
