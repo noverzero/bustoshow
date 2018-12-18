@@ -23,14 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const userWatchlist = []
 
 
-  axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
+  axios.all([axios.get("/routes/token"),axios.get("/routes/reservations")]).then(axios.spread((bool,allReservationArray)=>{
     let loggedIn = bool.data.boolean
     let firstName = bool.data.obj.firstName
     let lastName = bool.data.obj.lastName
     let userEmail = bool.data.obj.email
-
+    console.log("reservations: ",allReservationArray.data)
     console.log("logged in:", loggedIn)
 
+    allReservationArray.data.forEach((reservation)=>{
+      if(userEmail === reservation.email){
+        userUpcomingEvents.push(reservation)
+      }
+    })
+      console.log(userUpcomingEvents)
     if(!loggedIn){
       fabSideNav.setAttribute('class', 'hide')
     }
@@ -84,7 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           upcomingATag.setAttribute('class', 'side-li waves-effect')
 
-          upcomingATag.innerText = 'Headliner | Date | Time | Venue'
+          upcomingATag.innerText = `${event.headliner} | ${moment(event.date).format("MM/DD/YY")} | ${event.time} | ${event.venue}`
+          // 'Headliner | Date | Time | Venue'
 
           upcomingEventField.appendChild(upcomingLi)
           upcomingLi.appendChild(upcomingATag)
