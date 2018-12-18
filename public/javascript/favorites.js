@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   M.AutoInit();
-  console.log("It's Alive!")
+  console.log("It's Alive")
 
   const logInButton = document.querySelector('.login-btn')
   const signInButton = document.querySelector('.signup-btn')
+  const sidenav = document.querySelector('#mobile-demo')
+  const sidenavLogin = document.querySelector('.login-link')
+  const sidenavSignup = document.querySelector('.signup-link ')
   const navLinks = document.querySelector('.nav-links')
   const navWrapper = document.querySelector('.nav-wrapper')
 
@@ -17,9 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.removeChild(logInButton)
 
       signInButton.removeAttribute('class', 'modal-trigger')
+      sidenavSignup.removeAttribute('class', 'modal-trigger')
+      sidenavLogin.removeAttribute('class', 'modal-trigger')
+
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
 
       signInButton.innerText = "Sign Out"
+      sidenavSignup.innerText = 'Sign Out'
+      sidenavLogin.innerText = 'My Events'
+
 
       let uList = document.createElement('ul')
       let list = document.createElement('li')
@@ -34,7 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
       uList.appendChild(list)
       list.appendChild(anchor)
 
-      signInButton.addEventListener("click",(e)=>{
+      signInButton.addEventListener("click",(addEventListener)=>{
+        axios.delete("/routes/token")
+        window.location.href = "/"
+      })
+
+      sidenavSignup.addEventListener("click",(event)=>{
         axios.delete("/routes/token")
         window.location.href = "/"
       })

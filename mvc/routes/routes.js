@@ -42,4 +42,5 @@ router.get("/reservations/:id",controller.getOneReservation)//get one reservatio
 router.post("/reservations",controller.createReservation)//create reservation
 router.patch("/reservations/:id",controller.updateReservation)//update reservation
 router.delete("/reservations/:id",controller.deleteReservation)//delete reservation
+router.get("/reservations/user/:id",controller.getAllReservationsByUser)//get all reservations for a single user when a user has multiple
 module.exports = router
