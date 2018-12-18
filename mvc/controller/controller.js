@@ -3,6 +3,7 @@ const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
+const reservationsModel = require("../model/reservationsModel")
 
 //users
 const getUser = (req,res,next) => {
@@ -157,6 +158,32 @@ const deleteBus = (req,res,next) => {
   })
 }
 
+//reservations controllers boiiiiii
+const getAllReservations = (req,res,next) => {
+  return reservationsModel.getAllR().then((allReservations)=>{
+    return allReservations.error ? next({status:404,message:"not found"}) : res.status(200).send(allReservations)
+  })
+}
+const getOneReservation = (req,res,next) => {
+  return reservationsModel.getOneR(req.params.id).then((oneReservation)=>{
+    return oneReservation.error ? next({status:404,message:"not found"}) : res.status(200).send(oneReservation)
+  })
+}
+const createReservation = (req,res,next) => {
+  return reservationsModel.createR(req.body).then((createdReservation)=>{
+    return createdReservation.error ? next({status:400,message:"Failed to create reservation"}) : res.status(201).send(createdReservation)
+  })
+}
+const updateReservation = (req,res,next) => {
+  return reservationsModel.updateR(req.params.id,req.body).then((updatedReservation)=>{
+    return updatedReservation.error ? next({status:400,message:"Failed to update reservation"}) : res.status(202).send(updatedReservation)
+  })
+}
+const deleteReservation = (req,res,next) => {
+  return reservationsModel.deleteR(req.params.id).then((deletedReservation)=>{
+    return deletedReservation.error ? next({status:404,message:"Failded to delete reservation"}) : res.status(204).send(deletedReservation)
+  })
+}
 
 module.exports = {
   getUser,
@@ -182,5 +209,10 @@ module.exports = {
   getOneBus,
   createBus,
   updateBus,
-  deleteBus
+  deleteBus,
+  getAllReservations,
+  getOneReservation,
+  createReservation,
+  updateReservation,
+  deleteReservation
 }
