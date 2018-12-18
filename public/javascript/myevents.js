@@ -2,15 +2,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
   console.log("It's Alive")
   M.AutoInit();
 
-  // Needed - If logged in and if favorited then {
+  const reservationPostLocation = '/payment.html'
 
   axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
     pickupArr = [...pickupss.data]
     eventsArr = [...eventss.data]
 
+    // console.log('eventsArr::', eventsArr)
+
     // Creating Table/ Blocks
     const body = document.querySelector('body')
-    const calendar = document.querySelector('.calendar-section')
+    const calendar = document.querySelector('.my-calendar-section')
     const events = document.querySelector('#events-row')
     const form = document.createElement('form')
 
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         venueDiv.setAttribute('class', 'col l3 s3 row-element valign-wrapper')
         buttonDiv.setAttribute('class', 'col l2 s2 row-element valign-wrapper row-element-last')
         button.setAttribute('class', 'waves-effect waves-light btn event-btn z-depth-0 center valign-wrapper modal-trigger')
-        button.setAttribute('data-target', 'modal3')
+        button.setAttribute('data-target', 'modal4')
         button.setAttribute('id', 'event-button')
 
 
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         dayDiv.innerText = `${moment(event.date).format("ddd")}`
         headlineDiv.innerText = `${event.headliner}`
         venueDiv.innerText = `${event.venue}`
-        button.innerText = 'Book'
+        button.innerText = 'View'
         button.value = {
           date: `${moment(event.date).format("MM/DD/YY")}`,
           day: `${moment(event.date).format("ddd")}`,
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     createRows()
 
     // Book Function
-    const bookModal = document.querySelector('#modal3-content')
+    const bookModal = document.querySelector('#modal4-content')
 
     calendar.addEventListener('click', (event) => {
 
@@ -81,18 +83,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       const modalFooter = document.createElement('div')
       const aTag = document.createElement('a')
-      const makeChange = document.createElement('button')
+      const bookSeat = document.createElement('button')
 
       modalFooter.setAttribute('class', 'modal-footer col l12 s12')
       aTag.setAttribute('class', 'modal-close waves-effect btn-flat')
-      makeChange.setAttribute('class', 'btn waves-effect waves-light book-btn')
-      makeChange.setAttribute('type', 'submit')
-      makeChange.setAttribute('name', 'action')
-      makeChange.setAttribute('onclick', 'submit()')
+      bookSeat.setAttribute('class', 'btn waves-effect waves-light book-btn')
+      bookSeat.setAttribute('type', 'submit')
+      bookSeat.setAttribute('name', 'action')
+      bookSeat.setAttribute('onclick', 'submit()')
       modalFooter.setAttribute('class', 'modal-footer')
+      form.setAttribute('action', reservationPostLocation)
+      // form.setAttribute('method', 'post')
 
 
-      makeChange.innerText = "Make Change"
+      bookSeat.innerText = "Book Seat"
       aTag.innerText = "Cancel"
 
 
@@ -139,10 +143,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       form.appendChild(modalFooter)
       modalFooter.appendChild(aTag)
-      modalFooter.appendChild(makeChange)
+      modalFooter.appendChild(bookSeat)
 
     })
 
+
+    // Book Button
+
+    const ticketInput = document.querySelectorAll('.ticket-input')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      console.log(event)
+      console.log(event.data)
+
+
+    })
 
     // Sort (Stretch)
 
