@@ -16,11 +16,15 @@
     height: 84vh;
   }
 
-  .submit-payment-button{
+  .submit-payment-button, .cancel-button{
     margin-top: 2vh;
     height: 50px;
     width: 150px;
     float: right;
+  }
+
+  .submit-payment-button{
+    margin-left: 1%;
   }
 
   .redText{

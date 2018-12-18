@@ -42,9 +42,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const emailField = document.querySelector('#email_payment')
 
 
-
-
-
   const userFirstName = userPaymentInfo.first
   const userLastName = userPaymentInfo.last
   const userEmail = userPaymentInfo.email
