@@ -1,32 +1,34 @@
 const axios = require("axios")
-
-const PLEASE = () =>{
-  return axios.all([axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAaeIvA`),axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAa1JnA`)]).then(axios.spread((redRocks,firstBank)=>{
+require("dotenv").config()
+// **remove env before deploy**
+const axiosEventData = () =>{
+  return axios.all([axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAaeIvA`),axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAa1JnA`)])
+  .then(axios.spread((redRocks,firstBank)=>{
     let firstBankEventArray = firstBank.data._embedded.events,
     venueF = firstBankEventArray[0]._embedded.venues[0].name,
     redRocksEventArray = redRocks.data._embedded.events,
     venueR = redRocksEventArray[0]._embedded.venues[0].name,
-    seedArray = firstBankEventArray.reduce((a,e)=>{
+    seedArray = firstBankEventArray.reduce((eventAccumulator,elem)=>{
       let holder = {
         venue:venueF,
-        headliner:e.name,
-        date:e.dates.start.localDate,
-        startTime:e.dates.start.localTime
+        headliner:elem.name,
+        date:elem.dates.start.localDate,
+        startTime:elem.dates.start.localTime
       }
-      a.push(holder)
-      return a
+      eventAccumulator.push(holder)
+      return eventAccumulator
     },[])
-    let headlinerArray = redRocksEventArray.reduce((a,e)=>{
-      a.push(e.name)
-      return a
+    let headlinerArray = redRocksEventArray.reduce((headlinerAccumulator,elem)=>{
+      headlinerAccumulator.push(elem.name)
+      return headlinerAccumulator
     },[])
-    let dateArray = redRocksEventArray.reduce((aa,e)=>{
-      aa.push(e.dates.start.localDate)
-      return aa
+    let dateArray = redRocksEventArray.reduce((dateAccumlator,elem)=>{
+      dateAccumlator.push(elem.dates.start.localDate)
+      return dateAccumlator
     },[])
-    let timeArray = redRocksEventArray.reduce((a,e)=>{
-      a.push(e.dates.start.localTime)
-      return a
+    let timeArray = redRocksEventArray.reduce((timeAccumulator,elem)=>{
+      timeAccumulator.push(elem.dates.start.localTime)
+      return timeAccumulator
     },[])
     for(let i = 0; i<headlinerArray.length; i++){
       if(timeArray[i]===undefined){
@@ -34,11 +36,14 @@ const PLEASE = () =>{
         dateArray.slice(i,1)
         timeArray.slice(i,1)
       }else{
-        seedArray.push({venue:venueR, headliner:headlinerArray[i], date:dateArray[i], startTime:timeArray[i]})
+        seedArray.push({venue:venueR, 
+          headliner:headlinerArray[i], 
+          date:dateArray[i], 
+          startTime:timeArray[i]})
       }
     }
     return seedArray
   }))
 }
 
-module.exports = {PLEASE}
+module.exports = {axiosEventData}

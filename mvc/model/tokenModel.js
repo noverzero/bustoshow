@@ -8,27 +8,25 @@ const bcrypt = require('bcryptjs')
 
 // check if logged in
 const checkToken = (cookie) => {
-  jwt.verify(cookie.token, loginKey, (err) => {
-    if (err) {
-      return false
+  return jwt.verify(cookie, loginKey, (err,decoded) => {
+    if (!err) {
+      return {boolean:true,obj:decoded}
     }
     else {
-      return true
+      return {boolean:false,obj:{firstName:"",lastName:""}}
     }
   })
 }
 
-// validate login attempt
-
+// validate login
 const logInUser = (user) => {
   let currentUser
-
-  knex('users')
+  return knex('users')
     .where('email', user.email)
     .select('*')
     .first()
     .then((userExists) => {
-      if (userExists) {
+      if (userExists.email === user.email) {
         currentUser = userExists
         return bcrypt.compare(user.password, currentUser.hshPwd)
       }
@@ -36,25 +34,16 @@ const logInUser = (user) => {
     })
     .then((passwordMatch) => {
       if (passwordMatch) {
-        delete currentUser.hshPwd //dont want to delete our database hashed passwords
+        delete currentUser.hshPwd
         const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
         return token
-        //does the token carry over from this to the other function the way i've edited it?
-        //return currentUser
-        console.log("SUCCESS!")//dont want to delete the hashed pass or return it to the user
       }
       return error
     })
-}
-
-const logOutUser = (cookie) => {
-  console.log("logouthappen")
-  return res.cookie('token', '', { httpOnly: true })//does this work? check controller. should we just write these in the controller so that the res and req are defined?
-}
-
+    .catch( err => error )
+  }
+  
 module.exports = {
   checkToken,
-  logInUser,
-  logOutUser
-
+  logInUser
 }

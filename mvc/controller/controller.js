@@ -12,7 +12,7 @@ const getUser = (req,res,next) => {
 
 const createUser = (req,res,next) => {
   return usersModel.addNewUser(req.body).then((userCreated) => {
-    
+
     // const token = jwt.sign(currentUser, loginKey, { expiresIn: '30d' })
     // res.cookie('token', token, { httpOnly: true })
     return userCreated.error ? next({status:400,message:"Failed to Post"}) : res.status(201).send(userCreated)
@@ -20,19 +20,19 @@ const createUser = (req,res,next) => {
 }
 
 const updateUser = (req,res,next) => {
-//   let userUpdated = model.
-//   return userUpdated.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(userUpdated)
+  return usersModel.editUserInfo(req.params.id, req.body).then((updatedUserInfo) => {
+    return updatedUserInfo.error ? next({status:400,message:"Failed to Patch"}) : res.status(202).send(updatedUserInfo)
+  })
 }
 
 //token
 const getToken = (req,res,next) => {
-  return tokenModel.checkToken(req.header.cookie).then((tokenChecked) => {
-    return tokenChecked.error ? next({status:401,message:"Unauthorized"}) : res.status(200).send(tokenChecked)
-  })
+  return res.send(tokenModel.checkToken(req.cookies.token))
 }
 
 const signIn = (req,res,next) => {
   return tokenModel.logInUser(req.body).then((loginValidate) => {
+    console.log("loginValidate.error:",loginValidate.error)
     if (loginValidate.error) {
       next({
         status:400,message:"Invalid username or password"
@@ -40,17 +40,14 @@ const signIn = (req,res,next) => {
     } else {
       console.log(loginValidate)
       res.cookie('token', loginValidate, { httpOnly: true })
-      .redirect('/the page.html')
+      .redirect('/')
     }
-  // return validateSignIn.error ? next({status:404,message:"Failed to Sign In"}) : res.status(201).send(validateSignIn)
   })
 }
 
 const logOut = (req,res,next) => {
-  return tokenModel.logOutUser(req).then((tokenDeleted) => {
-    return tokenDeleted.error ? next({status:404,message:"Failed to Log Out"}) : res.status(204).send(tokenDeleted)
-  })
-  // return res.tokenModel.logOutUser(req)
+  res.clearCookie('token')
+  res.end()
 }
 
 //events

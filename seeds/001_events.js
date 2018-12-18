@@ -3,7 +3,7 @@ const axiosEventsArr = require("../eventAxiosCall.js")
 exports.seed = (knex) => {
   return knex('events').del()
   .then(() => {
-    return axiosEventsArr.PLEASE().then((data)=>{
+    return axiosEventsArr.axiosEventData().then((data)=>{
       return knex('events').insert(data)
     })
   })
