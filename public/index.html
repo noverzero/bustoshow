@@ -28,37 +28,32 @@
   <div class="content-wrapper">
     <div class="layer">
 
-      <!-- FAB/ SideNav -->
-      <ul id="slide-out" class="sidenav hide">
-        <li>
-          <div id="user-info" class="user-view">
-            <div class="background green">
+      <div class="fab-sidenav" id='fab-SideNav'>
+        <!-- FAB/ SideNav -->
+        <ul id="slide-out" class="sidenav">
+
+          <li>
+            <div id="user-info" class="user-view">
+              <div class="background green">
+              </div>
+              <a href="#user"><img class=""></a>
+              <a href="#name"><span class="white-text sidenav-name"></span></a>
+              <a href="#email"><span class="white-text sidenav-email"></span></a>
             </div>
-            <a href="#user"><img class=""></a>
-            <a href="#name"><span class="white-text name">[NAME]</span></a>
-            <a href="#email"><span class="white-text email">[EMAIL]</span></a>
-          </div>
-        </li>
-        <li><a id="reservation-section" class="subheader">My Upcoming Reservations</a></li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li><a id="reservations-list"class="side-li waves-effect" target="_blank" href="#"></a></li>
-        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
-        <br>
-        <li><a class="subheader">My Wishlist</a></li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
-        <li><a class="side-li waves-effect" target="_blank" href="#"></a></li>
+          </li>
+
+          <li>
+            <a id="reservation-section" class="subheader">My Upcoming Reservations</a>
+          </li>
+          <li><div class="divider"></div></li>
 
 
 
-      </ul>
+        </ul>
 
-      <div id="account-button" class="hide">
-        <a href="#" data-target="slide-out" class="btn-floating waves-effect btn-large sidenav-trigger green"><i class="material-icons fab-button">account_box</i></a>
+        <div id="account-button" class="fixed-action-btn">
+          <a href="#" data-target="slide-out" class="btn-floating waves-effect btn-large sidenav-trigger green"><i class="material-icons fab-button">account_box</i></a>
+        </div>
       </div>
 
       <!-- Nav -->
@@ -96,7 +91,7 @@
         <li><a class="sidenav-close sidenav-link signup-link modal-trigger" data-target="modal2">SIGN UP</a></li>
       </ul>
 
-      <!-- Modal 1 -->
+      <!-- Login - Modal 1 -->
       <div id="modal1" class="modal login modal-fixed-footer">
         <div class="modal-content center">
           <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo modal-logo">
@@ -124,7 +119,7 @@
 
         <div class="modal-footer">
           <a id="sign-up" class="modal-close waves-effect btn-flat modal-link modal-trigger" data-target="modal2">Sign Up</a>
-          <a href="#!" id="logInButton" class="waves-effect btn-flat modal-link">Login</a>
+          <a href="#!" id="logInButton" class="waves-effect btn-flat modal-link modal-trigger">Login</a>
         </div>
       </div>
 
@@ -168,7 +163,7 @@
 
                 <div class="input-field col l6 s12">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input id="new-password-confirm" type="password" class="" required  >
+                  <input id="new-password-confirm" type="password" class="" required>
                   <label for="new-password-confirm">Confirm Password</label>
                   <span id="password-confirm" class="helper-text" data-error="Password not match" data-success="Password Match"></span>
                 </div>
