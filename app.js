@@ -5,7 +5,7 @@ const logger = require('morgan');
 const {util, seed} = require('data-seed')
 const cors = require("cors")
 require("dotenv").config()
-
+// **remove env before deploy**
 const indexRouter = require('./mvc/routes/routes');
 
 const stripe = require("stripe")("sk_test_UpJeVveXeyBBKiiJUcE4SWm6");
