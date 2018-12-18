@@ -4,6 +4,7 @@ const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
 const reservationsModel = require("../model/reservationsModel.js")
+const stripeModel = require("../model/stripeModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -199,6 +200,22 @@ const getAllReservationsByUser = (req,res,next) => {
   })
 }
 
+// Stripe token handling - STRETCH GOAL
+
+const stripeTokenHandler = (req, res, next) => {
+  // const token = req.body.stripeToken // Using Express
+  // const charge = stripe.charges.create({
+  //   amount: 999,
+  //   currency: 'usd',
+  //   description: 'Example charge',
+  //   source: token,
+  // })
+
+  // stripe.charges.capture("ch_1Dis0AGUkq1Hzg0nXQvDOb78", function(err, charge) {
+  //   // asynchronously called 
+  // });
+}
+
 module.exports = {
   getUser,
   createUser,
@@ -230,5 +247,6 @@ module.exports = {
   createReservation,
   updateReservation,
   deleteReservation,
-  getAllReservationsByUser
+  getAllReservationsByUser,
+  stripeTokenHandler
 }
