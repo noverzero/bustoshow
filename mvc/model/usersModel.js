@@ -14,27 +14,6 @@ const bcrypt = require('bcryptjs')
     // router.patch("/users/:id", controller.updateUser)//update user or deactivate user
 
 
-
-
-//Jake's Bookshelf Example:
-// bcrypt.hash(req.body.password, 10).then((hash) => {
-//   knex('users')
-//     .insert({
-//       first_name: body.first_name,
-//       last_name: body.last_name,
-//       email: body.email,
-//       hashed_password: hash
-//
-//     })
-//     .returning(['id', 'first_name', 'last_name', 'email'])
-//     .then((user) => {
-//       res.status(200).send(user[0])
-//     })
-// })
-// })
-
-
-
 //get all users (admin)
 const getAllUsersEmails = () => {
   return knex('users')
@@ -63,7 +42,6 @@ const getAllUsersEmails = () => {
 
 // POST New User
 // Create New User Account
-// use req.body
 const addNewUser = (body) => {
   const {firstName, lastName, email, isWaiverSigned, userType, plainTextPassword} = body
   if (!firstName || !lastName || !email || !isWaiverSigned || !plainTextPassword) {
@@ -113,6 +91,33 @@ const editUserInfo = (userId, updatedInfo) => {
   }
 }
 
+const getUserPickupCheckInList = (eventId, pickupId) => {
+  if(!pickupId || !eventId) {
+    return {error: "NOTTA CHANCE"}
+  } 
+  return knex("trips")
+      .select("trips.id","eventId","pickupLocationId")
+    .innerJoin("events","trips.eventId","events.id")
+      .select("*")//"venue","date","headliner"
+      .where("events.id",eventId)
+    .innerJoin("pickup_locations","trips.pickupLocationId","pickup_locations.id")
+      .select("*")
+      .where("pickup_locations.id",pickupId)
+    .innerJoin("reservations","trips.id","reservations.tripId")
+      .select("*")
+    .innerJoin("users","reservations.userId","users.id")
+      .select("*")//"firstName","lastName"
+    .then((userPickupListInfo) => {
+      return userPickupListInfo.reduce((userCheckinList, userCheckinListObject) => {
+        const {firstName,lastName,locationName,headliner} = userCheckinListObject
+        userCheckinList.push({firstName,lastName,locationName,headliner})
+        return userCheckinList
+      },[])
+    })
+}
+
+
+
 // // PATCH /user/:id 	ADMIN - deactivate a single user
 // const updateUser = (id, userInfo) => {
 //   const {userCode,name,capacity} = userInfo
@@ -132,7 +137,7 @@ const editUserInfo = (userId, updatedInfo) => {
 // }
 
 module.exports = {
-
+  getUserPickupCheckInList,
   getAllUsersEmails,
   // getOneUser,
   addNewUser,
