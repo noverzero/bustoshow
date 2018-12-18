@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function(){ console.log("it's alive!!!!")
+document.addEventListener("DOMContentLoaded", () => {
+  M.AutoInit();
+  console.log("It's Alive!")
 
   const logInButton = document.querySelector('.login-btn')
   const signInButton = document.querySelector('.signup-btn')

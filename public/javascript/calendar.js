@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     pickupArr = [...pickupss.data]
     eventsArr = [...eventss.data]
 
+    console.log('eventsArr::', eventsArr)
+
     // Creating Table/ Blocks
     const body = document.querySelector('body')
     const calendar = document.querySelector('.calendar-section')
