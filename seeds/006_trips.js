@@ -19,7 +19,7 @@ exports.seed = (knex) => {
   return knex('trips').del()
     .then(() => {
       // Inserts seed entries
-      return knex('trips').insert(generateTripSeeds(100))
+      return knex('trips').insert(generateTripSeeds(10))
     })
     .then(() => {
       return knex.raw("SELECT setval('trips_id_seq', (SELECT MAX(id) FROM trips))")
