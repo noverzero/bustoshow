@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sideNavEmail = document.querySelector('.sidenav-email')
   const upcomingEventField = document.querySelector('.sidenav')
   const watchlistField = document.querySelector('.watchlist')
+  const sideNavLogin = document.querySelector('#sidenav-login-btn')
+  const sideNav = document.querySelector('#mobile-demo')
 
 
   // Add call to user's favorited
@@ -21,14 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const userWatchlist = []
 
 
-  axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
+  axios.all([axios.get("/routes/token"),axios.get("/routes/reservations")]).then(axios.spread((bool,allReservationArray)=>{
     let loggedIn = bool.data.boolean
     let firstName = bool.data.obj.firstName
     let lastName = bool.data.obj.lastName
     let userEmail = bool.data.obj.email
-
+    console.log("reservations: ",allReservationArray.data)
     console.log("logged in:", loggedIn)
 
+    allReservationArray.data.forEach((reservation)=>{
+      if(userEmail === reservation.email){
+        userUpcomingEvents.push(reservation)
+      }
+    })
+      console.log(userUpcomingEvents)
     if(!loggedIn){
       fabSideNav.setAttribute('class', 'hide')
     }
@@ -40,22 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const anchor = document.createElement('a')
 
       navLinks.removeChild(logInButton)
+      sideNav.removeChild(sideNavLogin)
 
       signInButton.removeAttribute('class', 'modal-trigger')
       sidenavSignup.removeAttribute('class', 'modal-trigger')
-      sidenavLogin.removeAttribute('class', 'modal-trigger')
+      sidenavLogin.removeAttribute('class')
 
       uList.setAttribute('id', 'nav-mobile')
       uList.setAttribute('class', 'left hide-on-med-and-down')
       anchor.setAttribute('class', 'welcome-tag')
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
-      sidenavLogin.setAttribute('href', 'myevents.html')
 
 
       anchor.innerText = `Welcome, ${firstName} ${lastName}!`
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
-      sidenavLogin.innerText = 'My Events'
+      sidenavLogin.innerText = ''
       // sideNavName.innerText = firstName + ' ' + lastName + '\n'
       // sideNavEmail.innerText = userEmail
 
@@ -82,7 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           upcomingATag.setAttribute('class', 'side-li waves-effect')
 
-          upcomingATag.innerText = 'Headliner | Date | Time | Venue'
+          upcomingATag.innerText = `${event.headliner} | ${moment(event.date).format("MM/DD/YY")} | ${event.time} | ${event.venue}`
+          // 'Headliner | Date | Time | Venue'
 
           upcomingEventField.appendChild(upcomingLi)
           upcomingLi.appendChild(upcomingATag)
