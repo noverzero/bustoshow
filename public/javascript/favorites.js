@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidenavSignup = document.querySelector('.signup-link ')
   const navLinks = document.querySelector('.nav-links')
   const navWrapper = document.querySelector('.nav-wrapper')
-  const fabBtn = document.querySelector('.fixed-action-btn')
+  const fabBtn = document.querySelector('#account-button')
 
   axios.all([axios.get("/routes/token")]).then(axios.spread((bool)=>{
     let areWeLoggedIn = bool.data.boolean
@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if(areWeLoggedIn){
       navLinks.removeChild(logInButton)
 
-      fabBtn.removeAttribute('class', 'hide')
       signInButton.removeAttribute('class', 'modal-trigger')
       sidenavSignup.removeAttribute('class', 'modal-trigger')
       sidenavLogin.removeAttribute('class', 'modal-trigger')
