@@ -1,4 +1,4 @@
-const error = { error: "ssssss im an error snake" }
+const error = { error: "SNAKES ON A BUS" }
 //buses Model
 //buses THESE ARE THE buses ROUTES for reference
           //X router.get("/buses", controller.getAllBuses)//get all busses
