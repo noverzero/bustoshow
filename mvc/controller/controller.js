@@ -3,7 +3,7 @@ const eventsModel = require("../model/eventsModel.js")
 const busesModel = require("../model/busesModel.js")
 const tokenModel = require("../model/tokenModel.js")
 const usersModel = require("../model/usersModel.js")
-const reservationsModel = require("../model/reservationsModel")
+const reservationsModel = require("../model/reservationsModel.js")
 
 //users
 const getUser = (req,res,next) => {
@@ -170,6 +170,7 @@ const getOneReservation = (req,res,next) => {
   })
 }
 const createReservation = (req,res,next) => {
+  console.log(reservationsModel.createR(req.body))
   return reservationsModel.createR(req.body).then((createdReservation)=>{
     return createdReservation.error ? next({status:400,message:"Failed to create reservation"}) : res.status(201).send(createdReservation)
   })
@@ -182,6 +183,11 @@ const updateReservation = (req,res,next) => {
 const deleteReservation = (req,res,next) => {
   return reservationsModel.deleteR(req.params.id).then((deletedReservation)=>{
     return deletedReservation.error ? next({status:404,message:"Failded to delete reservation"}) : res.status(204).send(deletedReservation)
+  })
+}
+const getAllReservationsByUser = (req,res,next) => {
+  return reservationsModel.getAllByUser(req.params.id).then((ress4user)=>{
+    return ress4user.error ? next({status:404,message:"not found"}) : res.status(200).send(ress4user)
   })
 }
 
@@ -214,5 +220,6 @@ module.exports = {
   getOneReservation,
   createReservation,
   updateReservation,
-  deleteReservation
+  deleteReservation,
+  getAllReservationsByUser
 }

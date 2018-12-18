@@ -38,7 +38,7 @@ const bcrypt = require('bcryptjs')
 //get all users (admin)
 const getAllUsersEmails = () => {
   return knex('users')
-  .select('email')
+  .select("id",'email')
   .then((users) => {
     return users
   })
@@ -87,7 +87,7 @@ const addNewUser = (body) => {
 const editUserInfo = (userId, updatedInfo) => {
   if (!userId) {
     return {error:"invalid ID"}
-  } 
+  }
   if (updatedInfo.email) {
     return getAllUsersEmails()
     .then((userArr) => {
@@ -98,7 +98,7 @@ const editUserInfo = (userId, updatedInfo) => {
           result = false
         }
       }
-      if (result) { 
+      if (result) {
         return knex('users')
           .where('id', userId)
           .update(updatedInfo)
@@ -110,7 +110,7 @@ const editUserInfo = (userId, updatedInfo) => {
         return {error:"email is already registered"}
       }
     })
-  }  
+  }
 }
 
 // // PATCH /user/:id 	ADMIN - deactivate a single user

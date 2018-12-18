@@ -5,6 +5,10 @@
     width: 100vw;
   }
 
+  .my-calendar-section{
+    background-color: #ff420f;
+  }
+
   .event-header {
     color: #ffffff;
     font-family: 'Raleway', sans-serif;
