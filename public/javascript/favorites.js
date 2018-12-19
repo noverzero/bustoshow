@@ -210,16 +210,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const bookModal = document.querySelector('#modal3-content')
 
         calendar.addEventListener('click', (event) => {
-          // console.log(bookModal);
-          // console.log(bookModal.lastChild);
-          // console.log(bookModal.hasChildNodes())
-          // while (bookModal.hasChildNodes()) {
-          //   console.log("delete")
-          //   console.log(bookModal.lastChild);
-          //   bookModal.removeChild(bookModal.lastChild);
-          //   bookModal.lastChild.innerHTML = ""
-          // }
-          if(bookModal.hasChildNodes()){bookModal.innerHTML = ""}
+          while (bookModal.firstChild) {
+            bookModal.removeChild(bookModal.firstChild);
+          }
+          while(form.firstChild){
+            form.removeChild(form.firstChild)
+          }//WE NEED 2 WHILE LOOPS TO CLEAR THIS SHIZ
+
           let eventInfo = event.target.value
           let headliner = eventInfo.headliner
           let date = eventInfo.date
@@ -244,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
           bookSeat.setAttribute('onclick', 'submit()')
           modalFooter.setAttribute('class', 'modal-footer')
           form.setAttribute('action', reservationPostLocation)
+          // form.setAttribute("id","DELETE")
           // form.setAttribute('method', 'post')
 
 
