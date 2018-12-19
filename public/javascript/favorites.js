@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   M.AutoInit();
   console.log("It's Alive")
 
-  const logInButton = document.querySelector('.login-btn')
+  const signUpButton = document.querySelector('.login-btn')
   const signInButton = document.querySelector('.signup-btn')
   const sidenav = document.querySelector('#mobile-demo')
   const sidenavLogin = document.querySelector('.login-link')
@@ -51,7 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const list = document.createElement('li')
       const anchor = document.createElement('a')
 
-      navLinks[1].removeChild(logInButton)
+      console.log('navLinks[1]:: ', navLinks[1])
+      signUpButton.removeAttribute('data-target')
+      signUpButton.classList.remove('login-btn', 'btn', 'login-sidenav')
+      signUpButton.classList.add('welcome-name')
+      signUpButton.innerText = `Welcome ${firstName} ${lastName}`
+      console.log(signUpButton)
+      //navLinks[1].removeChild(signUpButton)
       sideNav.removeChild(sideNavLogin)
 
       signInButton.removeAttribute('class', 'modal-trigger')
@@ -64,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
       signInButton.setAttribute('class', 'sign-out signup-btn btn')
 
 
-      anchor.innerText = `Welcome, ${firstName} ${lastName}!`
       signInButton.innerText = "Sign Out"
       sidenavSignup.innerText = 'Sign Out'
       sidenavLogin.innerText = ''
@@ -74,7 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       navWrapper.appendChild(uList)
       uList.appendChild(list)
-      // list.appendChild(anchor) ///////////////////////////////////////////////////DUSTIN TO DO MOVE ANCHOR FOR WELCOME
+
+      /////Signed in as firstName Lastname welcome text.
+      // let welcomeName = document.querySelector('#welcome-name')
+      // console.log("welcomeName::: ", welcomeName)
+      // welcomeName.innerText = ` Welcome, ${firstName} ${lastName}`
+
+      console.log('signInButton: ', signInButton)
+      console.log('signUpButton: ', signUpButton)
+
 
       signInButton.addEventListener("click",(addEventListener)=>{
         axios.delete("/routes/token")

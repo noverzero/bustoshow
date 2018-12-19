@@ -30,6 +30,20 @@
     background-size: cover;
   }
 
+  #welcome-name{
+    padding-top: 20px;
+    position:fixed;
+    color: white;
+    text-align: left;
+    /* padding-left: 90vw; */
+    padding-left: 10px;
+    /* float:right; */
+  }
+
+  .welcome-name{
+    color:white
+  }
+
   i.fab-button{
     color: #ff420f;
     background-color: #ffffff;
