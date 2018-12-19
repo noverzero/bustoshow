@@ -1,5 +1,5 @@
 const axios = require("axios")
-require("dotenv").config()
+// require("dotenv").config()
 // **remove env before deploy**
 const axiosEventData = () =>{
   return axios.all([axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAaeIvA`),axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM}&venueId=KovZpZAa1JnA`)])
@@ -36,9 +36,9 @@ const axiosEventData = () =>{
         dateArray.slice(i,1)
         timeArray.slice(i,1)
       }else{
-        seedArray.push({venue:venueR, 
-          headliner:headlinerArray[i], 
-          date:dateArray[i], 
+        seedArray.push({venue:venueR,
+          headliner:headlinerArray[i],
+          date:dateArray[i],
           startTime:timeArray[i]})
       }
     }
