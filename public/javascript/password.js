@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   createAccount.addEventListener('click', (event) => {
     axios.post("/routes/users", {firstName:newFirstName.value, lastName:newLastName.value, email:newEmail.value, isWaiverSigned:true, userType: 'standard', plainTextPassword: newPassword.value} ).then((response) => {
-      // console.log("dustins axios.post response.data:::", response.data)
-      //console.log("firstName", firstName)
-
     })
   })
 
