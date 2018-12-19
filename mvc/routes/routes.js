@@ -46,5 +46,5 @@ router.delete("/reservations/:id",controller.deleteReservation)//delete reservat
 router.get("/reservations/user/:id",controller.getAllReservationsByUser)//get all reservations for a single user when a user has multiple
 
 //payments
-// router.post("/charge", controller.ccPayment)//accept CC token, 
+router.post("/charge", controller.stripeTokenHandler)//accept CC token, create charge 
 module.exports = router
