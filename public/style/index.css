@@ -195,6 +195,21 @@
     }
   }
 
+  .welcome-name{
+    color: #ffffff;
+    border: none;
+  }
+
+  .welcome-name:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffffff;
+  }
+
+  ul.welcome-name:onclick{
+    color: #ffffff;
+    border: none;
+  }
+
 }
 
 @media (max-width: 580px) {

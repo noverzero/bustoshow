@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       signUpButton.removeAttribute('data-target')
       signUpButton.classList.remove('login-btn', 'btn', 'login-sidenav')
       signUpButton.classList.add('welcome-name')
-      signUpButton.innerText = `Welcome ${firstName} ${lastName}`
+      signUpButton.innerText = `Welcome, ${firstName} ${lastName}`
       console.log(signUpButton)
       //navLinks[1].removeChild(signUpButton)
       sideNav.removeChild(sideNavLogin)
