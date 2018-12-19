@@ -20,8 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add call to user's favorited
   const userUpcomingEvents = []
-  const userWatchlist = []
 
+  //grabbing watch list from local storage and appending all items on load
+  let userWatchlist = []
+  if(JSON.parse(localStorage.getItem("watchlist")).length>0){
+    userWatchlist = JSON.parse(localStorage.getItem("watchlist"))
+  }
+  console.log("local storage array;",userWatchlist)
 
   axios.all([axios.get("/routes/token"),axios.get("/routes/reservations")]).then(axios.spread((bool,allReservationArray)=>{
 
@@ -40,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         userUpcomingEvents.push(reservation)
       }
     })
-      console.log(userUpcomingEvents)
+      console.log("users upcoming events :",userUpcomingEvents)
     if(!loggedIn){
       fabSideNav.setAttribute('class', 'hide')
     }
@@ -245,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
         aTag.innerText = "Cancel"
         watchlistBtn.addEventListener("click",(clickyclick)=>{
           userWatchlist.push(eventInfo)
+          localStorage.setItem("watchlist", JSON.stringify(userWatchlist))
           console.log(userWatchlist);
           if(userWatchlist.length >= 1){
             const watchlistLi = document.createElement('li')
@@ -322,6 +328,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // Sort (Stretch)
     }))
     ////////////////----------------------------------------------------////////////////////// end calendar.
+    userWatchlist.forEach((watchListItem)=>{
+      const watchlistLi = document.createElement('li')
+      const watchlistATag = document.createElement('a')
+      watchlistATag.setAttribute('class', 'side-li waves-effect')
+      watchlistATag.innerText = `${watchListItem.headliner} | ${watchListItem.date} | ${watchListItem.day} | ${watchListItem.venue}`
+      upcomingEventField.appendChild(watchlistLi)
+      watchlistLi.appendChild(watchlistATag)
+    })
   }))
   // End axios call
 })
