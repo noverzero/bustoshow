@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidenav = document.querySelector('#mobile-demo')
   const sidenavLogin = document.querySelector('.login-link')
   const sidenavSignup = document.querySelector('.signup-link ')
-  const navLinks = document.querySelector('.nav-links')
+  const navLinks = document.querySelectorAll('.nav-links')
   const navWrapper = document.querySelector('.nav-wrapper')
   const fabSideNav = document.querySelector('#fab-SideNav')
   const sideNavName = document.querySelector('.sidenav-name')
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const list = document.createElement('li')
       const anchor = document.createElement('a')
 
-      navLinks.removeChild(logInButton)
+      navLinks[1].removeChild(logInButton)
       sideNav.removeChild(sideNavLogin)
 
       signInButton.removeAttribute('class', 'modal-trigger')
