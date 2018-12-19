@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       navWrapper.appendChild(uList)
       uList.appendChild(list)
-      list.appendChild(anchor)
+      // list.appendChild(anchor) ///////////////////////////////////////////////////DUSTIN TO DO MOVE ANCHOR FOR WELCOME
 
       signInButton.addEventListener("click",(addEventListener)=>{
         axios.delete("/routes/token")
