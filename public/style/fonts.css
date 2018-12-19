@@ -36,3 +36,12 @@ a{
 .sidenav-link{
   font-family: 'Raleway', sans-serif;
 }
+
+.subheaderText{
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 2vh;
+  border-bottom: solid;
+  font-weight: bolder;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content=process.env.GOOGLE_TOKEN>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="stylesheet" href="style/fonts.css">
+  <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="style/calendar.css">
+  <!--[if lt IE 9]>
+    <script src="[PATH]/html5shiv.js"></script>
+    <![endif]-->
+
+  <title>Bus to Show</title>
+</head>
+
+<body>
+
+      <!-- Nav -->
+      <div class="navbar-fixed">
+        <nav class="z-depth-0 navbar">
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo center">
+              <img src="logos/BTS_LOGO-white-no-background-hi-res (1).png" alt="bts-logo" class="logo">
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <div class="container">
+                <ul class="left hide-on-med-and-down nav-links left-nav-button-group">
+                  <li><a class="nav-link" href="index.html#calendar">CALENDAR</a></li>
+                  <li><a class="nav-link" href="charters.html">CHARTERS</a></li>
+                  <li><a class="nav-link" href="about.html">ABOUT</a></li>
+                </ul>
+              </div>
+          </div>
+        </nav>
+      </div>
+
+      <ul class="sidenav" id="mobile-demo">
+        <br>
+        <a href="index.html" class="brand-logo center">
+          <img src="logos/BTS_LOGO-gray-with-transparent-background-hi-res copy.png" alt="bts-logo" class="logo">
+        </a>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <li><a class="sidenav-close sidenav-link" href="#calendar">CALENDAR</a></li>
+        <li><a class="sidenav-close sidenav-link" href="charters.html">CHARTERS</a></li>
+        <li><a class="sidenav-close sidenav-link" href="about.html">ABOUT</a></li>
+        <div class="divider"></div>
+        <li id='sidenav-login-btn'><a class="sidenav-close sidenav-link login-link modal-trigger" data-target="modal1">LOGIN</a></li>
+        <li><a class="sidenav-close sidenav-link signup-link modal-trigger" data-target="modal2">SIGN UP</a></li>
+      </ul>
+
+      </div>
+      <!-- End Nav -->
+        <!-- Calendar Section -->
+  <div class="calendar-section" id="checkin-list">
+    <div class="row container cal-body-section">
+      <div class="col l12 s12 make-top">
+        <h2 class="event-header">User Check-In List</h2>
+      </div>
+      <div class="col l12 s12" id="subheader">
+        
+      </div>
+      <div class="row row-big">
+        <div class="col s12 m12 l12">
+          <div class="row sort-by">
+            <div class="col l5 s5 row-header valign-wrapper" id="checkin-firstName">
+              <span class="title">First Name</span>
+            </div>
+            <div class="col l5 s5 row-header valign-wrapper" id="checkin-lastName">
+              <span class="title">Last Name</span>
+            </div>
+            <div class="col l2 s2 row-header valign-wrapper">
+              <span class="title">Checked In?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="checkin-events-row">
+
+      </div>
+
+    </div>
+  </div>
+  <!-- Book Seat Modal -->
+  <div class="modal6">
+    <div id="modal6" class="modal">
+      <div class="modal-content" id='modal6-content'>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+  <!-- End Content Wrapper -->
+
+
+<!-- Compiled and minified JavaScript -->
+  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="javascript/checkin.js"></script>
+
+
+  <!-- Google OAuth Script -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+
+</html>
