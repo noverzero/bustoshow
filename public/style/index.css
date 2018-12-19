@@ -59,7 +59,6 @@
   .logo {
     max-height: 60px;
     background-color: none;
-
     /* width: 10vw; */
     margin-top: 10px;
   }
@@ -67,6 +66,14 @@
   .nav-links {
     margin-top: 1%;
     margin-right: 1%;
+  }
+
+  .left-nav-button-group {
+    margin-left: -70px;
+  }
+
+  .right-nav-button-group {
+    /* Placeholder for Future CSS styling */
   }
 
   .nav-link:hover {
