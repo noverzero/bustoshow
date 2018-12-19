@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
           upcomingATag.setAttribute('class', 'side-li waves-effect')
 
           upcomingATag.innerText = `${event.headliner} | ${moment(event.date).format("MM/DD/YY")} | ${event.time} | ${event.venue}`
-          // 'Headliner | Date | Time | Venue'
 
           upcomingEventField.appendChild(upcomingLi)
           upcomingLi.appendChild(upcomingATag)
@@ -130,25 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
       upcomingEventField.appendChild(watchlistEventFieldLi)
       watchlistEventFieldLi.appendChild(watchlistEventFieldATag)
       upcomingEventField.appendChild(watchListDivder)
-
-      const watchlistATag0 = document.createElement('a')
-      if(userWatchlist.length === 0){
-        const watchlistLi = document.createElement('li')
-
-        watchlistATag0.setAttribute('class', 'side-li waves-effect')
-
-        watchlistATag0.innerText = 'No watchlist events!'
-
-        upcomingEventField.appendChild(watchlistLi)
-        watchlistLi.appendChild(watchlistATag0)
-      }
     }
-    //end of logged in
+    //end of logged in  //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////\\\\\\\\\\\\\\\\\\\\
+    //start of calendar //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////\\\\\\\\\\\\\\\\\\\\
     axios.all([axios.get("/routes/events"), axios.get("/routes/pickup")]).then(axios.spread((eventss, pickupss) => {
       pickupArr = [...pickupss.data]
       eventsArr = [...eventss.data]
-
-      // console.log('eventsArr::', eventsArr)
 
       // Creating Table/ Blocks
       const body = document.querySelector('body')
@@ -248,19 +234,12 @@ document.addEventListener("DOMContentLoaded", () => {
           userWatchlist.push(eventInfo)
           console.log(userWatchlist);
           if(userWatchlist.length >= 1){
-            userWatchlist.forEach(event => {
-              const watchlistLi = document.createElement('li')
-              const watchlistATag = document.createElement('a')
-
-              watchlistATag.setAttribute('class', 'side-li waves-effect')
-
-              watchlistATag.innerText = `${userWatchlist[userWatchlist.length-1].headliner} | ${userWatchlist[userWatchlist.length-1].date} | ${userWatchlist[userWatchlist.length-1].day} | ${userWatchlist[userWatchlist.length-1].venue}`
-              if(userWatchlist.length===1){
-                upcomingEventField.appendChild(watchlistLi)
-              }
-              watchlistATag0.innerHTML = "---------------"
-              watchlistLi.appendChild(watchlistATag)
-            })
+            const watchlistLi = document.createElement('li')
+            const watchlistATag = document.createElement('a')
+            watchlistATag.setAttribute('class', 'side-li waves-effect')
+            watchlistATag.innerText = `${userWatchlist[userWatchlist.length-1].headliner} | ${userWatchlist[userWatchlist.length-1].date} | ${userWatchlist[userWatchlist.length-1].day} | ${userWatchlist[userWatchlist.length-1].venue}`
+            upcomingEventField.appendChild(watchlistLi)
+            watchlistLi.appendChild(watchlistATag)
           }
         })
         bookModal.appendChild(modalTitle)
@@ -327,12 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function submit() {
 
       }
-
-
       // Sort (Stretch)
-
-
-
     }))
     ////////////////----------------------------------------------------////////////////////// end calendar.
   }))
