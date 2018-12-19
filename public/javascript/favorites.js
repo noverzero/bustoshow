@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalFooter.setAttribute('class', 'modal-footer col l12 s12')
         aTag.setAttribute('class', 'modal-close waves-effect btn-flat')
         bookSeat.setAttribute('class', 'btn waves-effect waves-light book-btn')
-        watchlistBtn.setAttribute('class', 'btn-flat waves-effect waves-light')
+        watchlistBtn.setAttribute('class', 'btn-flat waves-effect waves-light modal-close')
         bookSeat.setAttribute('type', 'submit')
         bookSeat.setAttribute('name', 'action')
         bookSeat.setAttribute('onclick', 'submit()')
