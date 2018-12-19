@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //grabbing watch list from local storage and appending all items on load
   let userWatchlist = []
-  if(JSON.parse(localStorage.getItem("watchlist")).length>0){
+  if(JSON.parse(localStorage.getItem("watchlist"))){
     userWatchlist = JSON.parse(localStorage.getItem("watchlist"))
   }
   console.log("local storage array;",userWatchlist)
