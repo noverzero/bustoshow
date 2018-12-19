@@ -151,14 +151,14 @@
 
   .ride-btn {
     margin-top: 0vh;
-    background-color: #ffffff;
-    color: #000000;
+    background: transparent;
+    color: #ffffff;
     height: auto;
   }
 
   .ride-btn:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #ff420f;
   }
 
 
