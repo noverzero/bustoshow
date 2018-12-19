@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           upcomingATag.setAttribute('class', 'side-li waves-effect')
 
-          upcomingATag.innerText = `${event.headliner} | ${moment(event.date).format("MM/DD/YY")} | ${event.time} | ${event.venue}`
+          upcomingATag.innerText = `${event.headliner} | ${moment(event.date).format("MM/DD/YY")} | ${event.departureTime} | ${event.venue}`
 
           upcomingEventField.appendChild(upcomingLi)
           upcomingLi.appendChild(upcomingATag)
@@ -315,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Sort (Stretch)
     }))
     ////////////////----------------------------------------------------////////////////////// end calendar.
+    //appends watch list items from localStorage
     userWatchlist.forEach((watchListItem)=>{
       const watchlistLi = document.createElement('li')
       const watchlistATag = document.createElement('a')
