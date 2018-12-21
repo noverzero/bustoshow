@@ -4,15 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   axios.get("/routes/events/12/pickup/7").then((checkinInfo) => {
 
     let usersArr = checkinInfo.data
-    
+
     // Creating Table/ Blocks
     const body = document.querySelector('body')
     const checkinList = document.querySelector('#checkin-list')
     const events = document.querySelector('#checkin-events-row')
     const subheader = document.querySelector('#subheader')
-    
+
     subheader.setAttribute("class","subheaderText")
     subheader.innerText = `PICKUP: ${usersArr[0].locationName}, SHOW: ${usersArr[0].headliner}`
+
 
     const createRows = () => {
     let num = 0
