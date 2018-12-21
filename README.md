@@ -1,8 +1,8 @@
 # BUSTOSHOW
 
-- Bus to Show, Inc is a Colorado Nonprofit Corporation with the mission of reducing impaired driving by organizing bus trips too and from events in an effort to reduce impaired driving and fuel consumption.
+- Bus to Show, Inc is a Colorado Nonprofit Corporation with the mission of reducing impaired driving by organizing bus trips to and from events in an effort to reduce impaired driving and fuel consumption.
 - features created for Bus to Show, Inc. as q2 project for galavanize WDI cohort g106
-- Concept and Project Manger by Dustin Huth for Bus to Show, Inc.
+- Concept and Project Management by Dustin Huth for Bus to Show, Inc.
 
 # Developers:
 - Blake Bollman: https://github.com/blucky36
